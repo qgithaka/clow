@@ -79,8 +79,8 @@ Implements the deep time-series foundation model pipeline (fine-tuning Chronos /
 
 - [x] Implement time-series sliding window dataset generator for Chronos fine-tuning
 - [x] Build Chronos fine-tuning pipeline with PyTorch, Hugging Face Transformers, and AutoGluon
-- [ ] Implement quantile loss / pinball loss evaluation for predictive high/low boundaries
-- [ ] Implement directional probability classifier ($P_{\text{Bull}}$ vs $P_{\text{Bear}}$)
+- [x] Implement quantile loss / pinball loss evaluation for predictive high/low boundaries
+- [x] Implement directional probability classifier ($P_{\text{Bull}}$ vs $P_{\text{Bear}}$)
 - [ ] Build training, validation, and evaluation loops with early stopping and checkpointing
 - [ ] Implement sliding window inference benchmark for CPU latency measurement
 - [ ] Write unit tests for model initialization, training step, and quantile generation
