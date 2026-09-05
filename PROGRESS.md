@@ -67,10 +67,10 @@ Raw price numbers drift over time and cannot be fed to deep neural networks acro
 
 ---
 
-## M03 – Clow-Forecaster Training Lab (Next-Candle Predictor) 🔄 IN PROGRESS
+## M03 – Clow-Forecaster Training Lab (Next-Candle Predictor) ✅ COMPLETE
 
 **Branch:** `feat/m03-forecaster-lab`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Implements the deep time-series foundation model pipeline (fine-tuning Chronos / TSFM) to predict the anatomy, directional probability, and probabilistic quantile boundaries (10th, 50th, 90th percentiles) of upcoming candles.
@@ -87,22 +87,22 @@ Implements the deep time-series foundation model pipeline (fine-tuning Chronos /
 
 ---
 
-## M04 – Clow-Tactical Order Policy Lab
+## M04 – Clow-Tactical Order Policy Lab 🔄 IN PROGRESS
 
 **Branch:** `feat/m04-tactical-order-lab`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Model 2 takes the candle forecast and historical market context to construct optimal pending orders (`BUY_LIMIT`, `SELL_LIMIT`, entry level, dynamic stop-loss, take-profit, and expiration horizon) using asymmetric Triple-Barrier labeling.
 
 ### Tasks
 
-- [ ] Implement Triple-Barrier labeling engine (Take-Profit vs Stop-Loss with time expiration horizon)
-- [ ] Build Tactical Order Policy model (optimizes limit entry discount, SL buffer, and TP targets)
-- [ ] Implement dynamic order expiration calculator (cancels pending order if unfilled within $N$ bars)
-- [ ] Implement mathematical expectancy filter ($\text{Expected Value} > 0$ with friction deducted)
-- [ ] Build end-to-end integration pipeline connecting Model 1 predictions to Model 2 order proposals
-- [ ] Write unit tests for order parameter validation, barrier outcomes, and expectancy calculation
+- [x] Implement Triple-Barrier labeling engine (Take-Profit vs Stop-Loss with time expiration horizon)
+- [x] Build Tactical Order Policy model (optimizes limit entry discount, SL buffer, and TP targets)
+- [x] Implement dynamic order expiration calculator (cancels pending order if unfilled within $N$ bars)
+- [x] Implement mathematical expectancy filter ($\text{Expected Value} > 0$ with friction deducted)
+- [x] Build end-to-end integration pipeline connecting Model 1 predictions to Model 2 order proposals
+- [x] Write unit tests for order parameter validation, barrier outcomes, and expectancy calculation
 
 ---
 
