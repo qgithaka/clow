@@ -30,7 +30,7 @@ Clow is structured as a unified monorepo containing both the Python AI Training 
 ## M01 – MT5 Windows IPC Bridge & Chunked Data Engine ✅ COMPLETE
 
 **Branch:** `feat/m01-data-engine`  
-**Status:** Completed – ready for PR merge into `development`
+**Status:** Merged into `development`
 
 ### Context
 Connects natively to MetaTrader 5 via local Windows IPC / DLL bindings without requiring any Expert Advisors (EAs). Implements chunked time-window pagination (e.g., 1-year slices) to pull decades of historical OHLCV data without hitting broker server row limits, validates data integrity, and stores datasets in immutable Parquet format queried via DuckDB.
@@ -47,23 +47,23 @@ Connects natively to MetaTrader 5 via local Windows IPC / DLL bindings without r
 
 ---
 
-## M02 – Scale-Free Stationary Feature Pipeline
+## M02 – Scale-Free Stationary Feature Pipeline 🔄 IN PROGRESS
 
 **Branch:** `feat/m02-feature-pipeline`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Raw price numbers drift over time and cannot be fed to deep neural networks across multiple years or currency pairs. This milestone builds the scale-free, asset-agnostic feature engineering pipeline that transforms raw OHLCV bars into stationary mathematical geometry, volatility ratios, and multi-timeframe context.
 
 ### Tasks
 
-- [ ] Implement scale-free candle anatomy features (Body Ratio, Upper/Lower Wick Ratios, Range-to-ATR)
-- [ ] Implement normalized momentum indicators (Rolling Z-score deviations from EMAs, stationary RSI, MACD ratios)
-- [ ] Implement volatility regime features (Normalized ATR, rolling Bollinger Band width, volatility expansion ratios)
-- [ ] Implement institutional Forex session features (Asian, London, NY Overlap, London Close session timing masks)
-- [ ] Implement multi-timeframe hierarchical context aligner (H1/H4 macro trends aligned to M1/M5 without future leakage)
-- [ ] Implement strictly causal rolling scalers (zero future look-ahead leakage)
-- [ ] Write unit tests verifying strict stationarity and causality
+- [x] Implement scale-free candle anatomy features (Body Ratio, Upper/Lower Wick Ratios, Range-to-ATR)
+- [x] Implement normalized momentum indicators (Rolling Z-score deviations from EMAs, stationary RSI, MACD ratios)
+- [x] Implement volatility regime features (Normalized ATR, rolling Bollinger Band width, volatility expansion ratios)
+- [x] Implement institutional Forex session features (Asian, London, NY Overlap, London Close session timing masks)
+- [x] Implement multi-timeframe hierarchical context aligner (H1/H4 macro trends aligned to M1/M5 without future leakage)
+- [x] Implement strictly causal rolling scalers (zero future look-ahead leakage)
+- [x] Write unit tests verifying strict stationarity and causality
 
 ---
 
