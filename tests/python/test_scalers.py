@@ -2,7 +2,8 @@
 
 import numpy as np
 import pandas as pd
-from training.data.scalers import RollingZScoreScaler, RollingRobustScaler, RollingMinMaxScaler
+
+from training.data.scalers import RollingMinMaxScaler, RollingRobustScaler, RollingZScoreScaler
 
 
 def test_rolling_zscore_batch_and_streaming_equivalence() -> None:

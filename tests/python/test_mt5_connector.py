@@ -1,9 +1,9 @@
 """Unit tests for MT5 broker connector."""
 
 from unittest.mock import MagicMock, patch
+
 from training.data.mt5_connector import (
     BrokerAccount,
-    LiveTick,
     MT5BrokerConnector,
     SymbolMetadata,
 )

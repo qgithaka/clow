@@ -1,10 +1,12 @@
 """Unit tests for Multi-Timeframe Hierarchical Context Aligner."""
 
 from datetime import timedelta
+
 import numpy as np
 import pandas as pd
-from training.data.multi_timeframe import MultiTimeframeAligner
+
 from training.data.features import FeatureEngineer
+from training.data.multi_timeframe import MultiTimeframeAligner
 
 
 def test_resample_ohlcv() -> None:

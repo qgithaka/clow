@@ -74,7 +74,7 @@ void test_chart_feed_tick_aggregation() {
     assert(series.get_bar(0).close == 1.0821);
 
     // Tick 3 in Bar 1 (new bar after 60s)
-    bool new_bar = feed.on_tick("EURUSD", 1.0815, 1.0817, t0 + 61000, series);
+    [[maybe_unused]] bool new_bar = feed.on_tick("EURUSD", 1.0815, 1.0817, t0 + 61000, series);
     assert(new_bar);
     assert(series.size() == 2);
     assert(series.get_bar(1).open == 1.0816);

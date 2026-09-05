@@ -111,8 +111,8 @@ void test_toast_manager() {
     ToastManager toasts;
     assert(toasts.active_toasts().empty());
 
-    int64_t t1 = toasts.show_toast(ToastType::Info, "Welcome", "Terminal initialized");
-    int64_t t2 = toasts.show_toast(ToastType::Success, "Order Executed", "BUY 0.5 EURUSD @ 1.0850");
+    [[maybe_unused]] int64_t t1 = toasts.show_toast(ToastType::Info, "Welcome", "Terminal initialized");
+    [[maybe_unused]] int64_t t2 = toasts.show_toast(ToastType::Success, "Order Executed", "BUY 0.5 EURUSD @ 1.0850");
 
     assert(toasts.active_toasts().size() == 2);
     assert(toasts.total_history_count() == 2);

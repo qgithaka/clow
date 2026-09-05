@@ -24,7 +24,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install ruff pytest numpy pandas torch onnx onnxruntime duckdb scipy statsmodels
+          pip install ruff pytest pytest-cov numpy pandas torch onnx onnxruntime duckdb scipy statsmodels pyyaml pydantic scikit-learn transformers
 
       - name: Run Ruff Linter
         run: |
@@ -55,4 +55,9 @@ jobs:
 
       - name: Execute C++ Test Suite
         run: |
-          ./build/clow_cpp_tests.exe
+          ctest --test-dir build -C Release --output-on-failure
+          if (Test-Path ./build/Release/clow_cpp_tests.exe) {
+            ./build/Release/clow_cpp_tests.exe
+          } elseif (Test-Path ./build/clow_cpp_tests.exe) {
+            ./build/clow_cpp_tests.exe
+          }

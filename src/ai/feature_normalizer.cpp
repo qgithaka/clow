@@ -38,7 +38,9 @@ void FeatureNormalizer::normalize_in_place(float* data, size_t num_bars, size_t 
     for (size_t b = 0; b < num_bars; ++b) {
         float* bar = data + (b * num_features);
         
+        #if defined(__GNUC__) && !defined(__clang__)
         #pragma GCC unroll 4
+        #endif
         for (size_t f = 0; f < effective_features; ++f) {
             float val = bar[f];
             float c = m_center[f];

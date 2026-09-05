@@ -4,10 +4,10 @@ Implements Marcos López de Prado's Triple-Barrier method with Take-Profit,
 Stop-Loss, and Vertical Time Expiration horizons including broker spread friction.
 """
 
+import logging
 from dataclasses import dataclass
 from enum import Enum
-import logging
-from typing import Dict, List, Optional, Tuple, Union
+
 import numpy as np
 import pandas as pd
 
@@ -159,21 +159,7 @@ class TripleBarrierEngine:
                 hit_tp = curr_low <= tp_price
                 hit_sl = curr_high >= sl_price
 
-                if hit_sl and hit_tp:
-                    gross_ret = (entry_price - sl_price) / entry_price
-                    return BarrierResult(
-                        entry_idx=entry_idx,
-                        exit_idx=curr_idx,
-                        entry_price=entry_price,
-                        exit_price=sl_price,
-                        outcome=BarrierOutcome.HIT_SL,
-                        holding_period_bars=holding_bars,
-                        gross_return=gross_ret,
-                        net_return=gross_ret - (spread_pips / entry_price),
-                        tp_price=tp_price,
-                        sl_price=sl_price,
-                    )
-                elif hit_sl:
+                if hit_sl and hit_tp or hit_sl:
                     gross_ret = (entry_price - sl_price) / entry_price
                     return BarrierResult(
                         entry_idx=entry_idx,
@@ -237,10 +223,10 @@ class TripleBarrierEngine:
         res = df.copy()
         n = len(res)
 
-        buy_outcomes: List[str] = []
-        buy_net_rets: List[float] = []
-        sell_outcomes: List[str] = []
-        sell_net_rets: List[float] = []
+        buy_outcomes: list[str] = []
+        buy_net_rets: list[float] = []
+        sell_outcomes: list[str] = []
+        sell_net_rets: list[float] = []
 
         closes = res["close"].values
 

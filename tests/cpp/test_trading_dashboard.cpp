@@ -107,21 +107,21 @@ void test_copilot_order_approval_workflow() {
     assert(std::abs(card->estimated_reward_usd - 200.0) < 1e-4);
 
     // Approve proposal
-    bool ok = panel.approve_proposal(pid);
+    [[maybe_unused]] bool ok = panel.approve_proposal(pid);
     assert(ok);
     assert(callback_fired);
     assert(panel.pending_count() == 0);
     assert(card->action == CopilotAction::Approved);
     assert(card->client_order_id > 0);
 
-    const auto* osm_order = osm.get_order(card->client_order_id);
+    [[maybe_unused]] const auto* osm_order = osm.get_order(card->client_order_id);
     assert(osm_order != nullptr);
     assert(osm_order->state == OrderState::Pending);
 
     // Rejection test on a second proposal
     int64_t pid2 = panel.queue_proposal(prop, 0.20, 0.5, 10000.0);
     assert(panel.pending_count() == 1);
-    bool rej_ok = panel.reject_proposal(pid2, "High volatility news embargo");
+    [[maybe_unused]] bool rej_ok = panel.reject_proposal(pid2, "High volatility news embargo");
     assert(rej_ok);
     assert(panel.get_proposal(pid2)->action == CopilotAction::Rejected);
     assert(panel.get_proposal(pid2)->rejection_reason == "High volatility news embargo");
@@ -195,7 +195,7 @@ void test_autopilot_execution_loop() {
     assert(evt2.executed_lot_size > 0.0);
     assert(autopilot.total_dispatches_count() == 1);
 
-    const auto* managed_ord = osm.get_order(evt2.client_order_id);
+    [[maybe_unused]] const auto* managed_ord = osm.get_order(evt2.client_order_id);
     assert(managed_ord != nullptr);
     assert(managed_ord->state == OrderState::Pending);
 
@@ -263,17 +263,17 @@ void test_positions_table_mark_to_market() {
     // Update quote: EURUSD rises to Bid 1.08700 / Ask 1.08712 (+20 pips for BUY, -21.2 pips for SELL)
     table.update_quote("EURUSD", 1.08700, 1.08712);
 
-    const auto* updated_pos1 = table.get(7001);
+    [[maybe_unused]] const auto* updated_pos1 = table.get(7001);
     assert(updated_pos1 != nullptr);
     assert(std::abs(updated_pos1->floating_pips - 20.0) < 1e-3);
     assert(std::abs(updated_pos1->floating_pnl - 200.0) < 1e-2);
 
-    const auto* updated_pos2 = table.get(7002);
+    [[maybe_unused]] const auto* updated_pos2 = table.get(7002);
     assert(updated_pos2 != nullptr);
     assert(std::abs(updated_pos2->floating_pips - (-21.2)) < 1e-3);
     assert(std::abs(updated_pos2->floating_pnl - (-106.0)) < 1e-2);
 
-    const auto* updated_ord1 = table.get(8001);
+    [[maybe_unused]] const auto* updated_ord1 = table.get(8001);
     assert(updated_ord1 != nullptr);
     assert(updated_ord1->floating_pnl == 0.0);
     assert(updated_ord1->floating_pips == 0.0);
@@ -334,19 +334,19 @@ void test_execution_controller_lifecycle() {
     assert(table.get_pending_orders().size() == 1);
 
     // Modify protection
-    bool mod_ok = controller.modify_protection(99001, 1.0830, 1.0920);
+    [[maybe_unused]] bool mod_ok = controller.modify_protection(99001, 1.0830, 1.0920);
     assert(mod_ok);
     assert(table.get(99001)->stop_loss == 1.0830);
     assert(table.get(99001)->take_profit == 1.0920);
 
     // Single-click close position
-    bool close_ok = controller.close_position(99001);
+    [[maybe_unused]] bool close_ok = controller.close_position(99001);
     assert(close_ok);
     assert(table.get_open_positions().empty());
     assert(osm.get_order(cid)->state == OrderState::Closed);
 
     // Single-click cancel pending order
-    bool cancel_ok = controller.cancel_pending_order(cid_pending);
+    [[maybe_unused]] bool cancel_ok = controller.cancel_pending_order(cid_pending);
     assert(cancel_ok);
     assert(table.get_pending_orders().empty());
     assert(osm.get_order(cid_pending)->state == OrderState::Cancelled);

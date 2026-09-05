@@ -1,10 +1,11 @@
 """Historical market data cleaning and chronological continuity pipeline."""
 
-from datetime import datetime, timezone
 import logging
-from typing import Tuple
+from datetime import UTC, datetime
+
 import numpy as np
 import pandas as pd
+
 from training.data.chunked_extractor import CanonicalTimeframe
 
 logger = logging.getLogger("clow.data.cleaner")
@@ -33,7 +34,7 @@ class DataCleaner:
         cls,
         df: pd.DataFrame,
         timeframe: CanonicalTimeframe = CanonicalTimeframe.M5,
-    ) -> Tuple[pd.DataFrame, dict[str, int]]:
+    ) -> tuple[pd.DataFrame, dict[str, int]]:
         """Cleans and sanitizes historical OHLCV data strictly without look-ahead bias."""
         stats = {
             "initial_rows": len(df),
@@ -53,9 +54,9 @@ class DataCleaner:
         if not pd.api.types.is_datetime64_any_dtype(clean_df["timestamp_utc"]):
             clean_df["timestamp_utc"] = pd.to_datetime(clean_df["timestamp_utc"], utc=True)
         elif clean_df["timestamp_utc"].dt.tz is None:
-            clean_df["timestamp_utc"] = clean_df["timestamp_utc"].dt.tz_localize(timezone.utc)
+            clean_df["timestamp_utc"] = clean_df["timestamp_utc"].dt.tz_localize(UTC)
         else:
-            clean_df["timestamp_utc"] = clean_df["timestamp_utc"].dt.tz_convert(timezone.utc)
+            clean_df["timestamp_utc"] = clean_df["timestamp_utc"].dt.tz_convert(UTC)
 
         # 2. Check chronological ordering
         if not clean_df["timestamp_utc"].is_monotonic_increasing:

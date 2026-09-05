@@ -1,13 +1,11 @@
 """Dataset health report generation engine."""
 
-from datetime import datetime, timezone
-import json
 import logging
-from pathlib import Path
-from typing import Any, Optional
-import numpy as np
+from datetime import UTC, datetime
+
 import pandas as pd
 from pydantic import BaseModel, Field
+
 from training.data.chunked_extractor import CanonicalTimeframe
 from training.data.validator import DataValidator, ValidationSummary
 
@@ -18,10 +16,10 @@ class DatasetHealthReport(BaseModel):
     """Complete diagnostic health profile for a dataset."""
     symbol: str
     timeframe: str
-    generated_at_utc: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    generated_at_utc: datetime = Field(default_factory=lambda: datetime.now(UTC))
     total_rows: int
-    start_time_utc: Optional[datetime] = None
-    end_time_utc: Optional[datetime] = None
+    start_time_utc: datetime | None = None
+    end_time_utc: datetime | None = None
     completeness_pct: float = 100.0
     median_spread_pips: float = 0.0
     max_spread_pips: float = 0.0

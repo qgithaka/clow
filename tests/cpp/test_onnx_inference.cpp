@@ -111,7 +111,7 @@ void test_onnx_inference_engine_execution() {
     OnnxInferenceEngine engine;
     assert(!engine.is_loaded());
 
-    bool loaded = engine.load_model(test_model_path, test_meta_path);
+    [[maybe_unused]] bool loaded = engine.load_model(test_model_path, test_meta_path);
     assert(loaded);
     assert(engine.is_loaded());
     assert(engine.metadata().model_id == "clow_forecaster_mock");
@@ -128,8 +128,8 @@ void test_onnx_inference_engine_execution() {
     assert(pred.quantiles_high.size() == 3);
     assert(pred.quantiles_low.size() == 3);
     // Quantiles strictly non-negative
-    for (float qh : pred.quantiles_high) assert(qh >= 0.0f);
-    for (float ql : pred.quantiles_low) assert(ql >= 0.0f);
+    for ([[maybe_unused]] float qh : pred.quantiles_high) assert(qh >= 0.0f);
+    for ([[maybe_unused]] float ql : pred.quantiles_low) assert(ql >= 0.0f);
 
     // Clean up temporary files
     std::remove(test_model_path.c_str());

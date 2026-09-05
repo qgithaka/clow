@@ -2,10 +2,9 @@
 
 import numpy as np
 import pandas as pd
-import pytest
+
 from training.data.features import FeatureEngineer
 from training.data.multi_timeframe import MultiTimeframeAligner
-from training.data.scalers import RollingZScoreScaler
 
 
 def generate_synthetic_series(n_bars: int = 500, seed: int = 42) -> pd.DataFrame:

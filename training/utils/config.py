@@ -2,7 +2,7 @@
 
 from pathlib import Path
 from typing import Any, Literal
-import os
+
 import yaml
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -82,7 +82,7 @@ def load_config(config_path: Path | str | None = None) -> ClowSettings:
     if config_path is not None:
         p = Path(config_path)
         if p.exists():
-            with open(p, "r", encoding="utf-8") as f:
+            with open(p, encoding="utf-8") as f:
                 loaded = yaml.safe_load(f)
                 if isinstance(loaded, dict):
                     config_dict = loaded

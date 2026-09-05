@@ -3,7 +3,8 @@
 import numpy as np
 import pandas as pd
 import pytest
-from training.validation.cross_validation import PurgedWalkForwardCV, CVSplit
+
+from training.validation.cross_validation import PurgedWalkForwardCV
 
 
 def test_purged_walk_forward_cv_causality_and_purging() -> None:

@@ -3,10 +3,10 @@
 Eliminates cross-fold data leakage and serial correlation bias in financial time series.
 """
 
-from dataclasses import dataclass
 import logging
-from typing import Generator, List, Optional, Tuple, Union
-import numpy as np
+from collections.abc import Generator
+from dataclasses import dataclass
+
 import pandas as pd
 
 logger = logging.getLogger("clow.validation.cross_validation")
@@ -70,8 +70,8 @@ class PurgedWalkForwardCV:
             if test_start >= n_samples or test_end <= test_start:
                 break
 
-            # Purging: Train window ends `purge_window` bars before test_start
-            train_end = max(10, test_start - self.purge_window)
+            # Purging & Embargo: Train window ends before test_start
+            train_end = max(10, test_start - self.purge_window - embargo_bars)
             train_start = 0 if self.expanding else max(0, train_end - min_train_bars)
 
             train_df = df.iloc[train_start:train_end].copy()

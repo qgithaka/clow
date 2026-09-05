@@ -4,12 +4,13 @@ Proves whether predictive model performance is statistically significant
 or if it collapses to 50% random chance under randomized noise permutations.
 """
 
-from dataclasses import dataclass
 import logging
-from typing import Callable, Dict, List, Optional, Sequence, Tuple
+from dataclasses import dataclass
+
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
+
 from training.models.forecaster import ClowForecaster
 from training.models.losses import QuantileEvaluator
 
@@ -48,8 +49,8 @@ class PermutationTester:
         model.eval()
 
         # 1. Collect all predictions and true targets
-        all_pred_probs: List[float] = []
-        all_true_targets: List[float] = []
+        all_pred_probs: list[float] = []
+        all_true_targets: list[float] = []
 
         with torch.no_grad():
             for batch in test_loader:
@@ -71,7 +72,7 @@ class PermutationTester:
         baseline_acc = QuantileEvaluator.calculate_directional_accuracy(pred_arr, target_arr)
 
         # 2. Permutation Trials
-        permuted_accs: List[float] = []
+        permuted_accs: list[float] = []
         for _ in range(num_permutations):
             shuffled_targets = rng.permutation(target_arr)
             perm_acc = QuantileEvaluator.calculate_directional_accuracy(pred_arr, shuffled_targets)

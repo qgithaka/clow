@@ -4,16 +4,16 @@ Subjects every trading strategy to rigorous chronological validation gates,
 Deflated Sharpe Ratio (DSR), spread shock simulations, and Monte Carlo risk limits.
 """
 
-from dataclasses import dataclass
-from datetime import datetime, timezone
 import logging
-from typing import Dict, List, Optional, Sequence, Tuple, Union
+from collections.abc import Sequence
+from dataclasses import dataclass
+from datetime import UTC, datetime
+
 import numpy as np
 import scipy.stats as stats
-from training.validation.cross_validation import PurgedWalkForwardCV
-from training.validation.monte_carlo import MonteCarloSimulator, MonteCarloSummary
-from training.validation.permutation import PermutationTester, PermutationTestResult
-from training.validation.stress_test import SpreadShockSimulator, SpreadShockScenario
+
+from training.validation.monte_carlo import MonteCarloSimulator
+from training.validation.stress_test import SpreadShockSimulator
 
 logger = logging.getLogger("clow.validation.proof_engine")
 
@@ -27,7 +27,7 @@ class ValidationGateResults:
     gate_drawdown_limit_passed: bool
     gate_profit_factor_passed: bool
     all_gates_passed: bool
-    rejection_reasons: List[str]
+    rejection_reasons: list[str]
 
 
 @dataclass
@@ -178,7 +178,7 @@ class StatisticalProofEngine:
         spread_3x_ok = stress_results.get("3.0x_spread", False) and stress_results["3.0x_spread"].is_profitable
 
         # 5. Validation Gates Check
-        rejections: List[str] = []
+        rejections: list[str] = []
         gate_dsr = dsr >= min_dsr
         if not gate_dsr:
             rejections.append(f"DSR {dsr:.4f} < {min_dsr:.4f} threshold (selection bias / non-normality risk).")
@@ -208,7 +208,7 @@ class StatisticalProofEngine:
         # 6. Markdown Report Generation
         report_md = f"""# Statistical Proof Report: {symbol}
 
-**Generated At:** {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}  
+**Generated At:** {datetime.now(UTC).strftime('%Y-%m-%d %H:%M:%S UTC')}  
 **Validation Decision:** {'APPROVED FOR DEPLOYMENT' if all_ok else 'REJECTED BY GATES'}
 
 ---

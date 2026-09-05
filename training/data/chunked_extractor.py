@@ -1,12 +1,13 @@
 """Chunked historical time-window data extraction engine."""
 
-from dataclasses import dataclass
-from datetime import datetime, timezone
-from enum import Enum
 import logging
-from typing import Callable, Optional
+from collections.abc import Callable
+from dataclasses import dataclass
+from datetime import UTC, datetime
+from enum import Enum
+
 import pandas as pd
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 logger = logging.getLogger("clow.data.extractor")
 
@@ -87,9 +88,9 @@ class ChunkedHistoricalExtractor:
     ) -> list[DateRangeChunk]:
         """Splits a multi-year date range into chronological time slices."""
         if start_utc.tzinfo is None:
-            start_utc = start_utc.replace(tzinfo=timezone.utc)
+            start_utc = start_utc.replace(tzinfo=UTC)
         if end_utc.tzinfo is None:
-            end_utc = end_utc.replace(tzinfo=timezone.utc)
+            end_utc = end_utc.replace(tzinfo=UTC)
 
         if start_utc >= end_utc:
             raise ValueError(f"start_utc ({start_utc}) must be strictly earlier than end_utc ({end_utc})")
@@ -148,8 +149,8 @@ class ChunkedHistoricalExtractor:
         timeframe: CanonicalTimeframe,
         start_utc: datetime,
         end_utc: datetime,
-        fetcher_fn: Optional[Callable[[DateRangeChunk], pd.DataFrame]] = None,
-        progress_callback: Optional[Callable[[int, int, int], None]] = None,
+        fetcher_fn: Callable[[DateRangeChunk], pd.DataFrame] | None = None,
+        progress_callback: Callable[[int, int, int], None] | None = None,
     ) -> pd.DataFrame:
         """Extracts and stitches all chunks across the full date range."""
         chunks = self.generate_chunks(start_utc, end_utc)

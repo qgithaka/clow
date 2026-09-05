@@ -2,7 +2,8 @@
 
 import numpy as np
 import pandas as pd
-from training.models.triple_barrier import TripleBarrierEngine, BarrierOutcome
+
+from training.models.triple_barrier import BarrierOutcome, TripleBarrierEngine
 
 
 def test_long_tp_and_sl_outcomes() -> None:

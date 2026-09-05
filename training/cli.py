@@ -1,9 +1,11 @@
 """Clow Command-Line Interface."""
 
 import sys
+
 import typer
 from rich.console import Console
 from rich.table import Table
+
 from training.utils.config import load_config
 from training.utils.logging import setup_logger
 

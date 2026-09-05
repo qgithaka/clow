@@ -4,7 +4,8 @@ Constructs strictly causal sliding context windows with multi-target candle anat
 directional classification labels, and quantile excursion targets.
 """
 
-from typing import Dict, List, Optional, Sequence, Tuple, Union
+from collections.abc import Sequence
+
 import numpy as np
 import pandas as pd
 import torch
@@ -43,8 +44,8 @@ class TimeSeriesSlidingWindowDataset(Dataset):
     def __init__(
         self,
         df: pd.DataFrame,
-        feature_cols: Optional[Sequence[str]] = None,
-        target_cols: Optional[Sequence[str]] = None,
+        feature_cols: Sequence[str] | None = None,
+        target_cols: Sequence[str] | None = None,
         context_length: int = 64,
         prediction_horizon: int = 1,
         eps: float = 1e-8,
@@ -119,7 +120,7 @@ class TimeSeriesSlidingWindowDataset(Dataset):
     def __len__(self) -> int:
         return self.num_windows
 
-    def __getitem__(self, idx: int) -> Dict[str, torch.Tensor]:
+    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
         if idx < 0 or idx >= self.num_windows:
             raise IndexError(f"Index {idx} out of bounds for dataset of length {self.num_windows}.")
 
@@ -150,7 +151,7 @@ class TimeSeriesSlidingWindowDataset(Dataset):
         val_ratio: float = 0.15,
         test_ratio: float = 0.15,
         purge_window: int = 64,
-    ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         """Performs strictly chronological dataset split with purging gaps between folds.
         
         Purging removes `purge_window` bars at boundaries so context windows never

@@ -4,9 +4,10 @@ Performs bootstrap trade resamplings to calculate worst-case Max Drawdown,
 Value-at-Risk (VaR), Conditional VaR (Expected Shortfall), and Risk of Ruin.
 """
 
-from dataclasses import dataclass
 import logging
-from typing import Dict, List, Optional, Sequence, Tuple
+from collections.abc import Sequence
+from dataclasses import dataclass
+
 import numpy as np
 
 logger = logging.getLogger("clow.validation.monte_carlo")
@@ -79,8 +80,8 @@ class MonteCarloSimulator:
         rng = np.random.RandomState(seed)
         ret_arr = np.array(trade_returns, dtype=float)
 
-        final_equities: List[float] = []
-        max_drawdowns: List[float] = []
+        final_equities: list[float] = []
+        max_drawdowns: list[float] = []
         ruin_count = 0
 
         for _ in range(num_simulations):

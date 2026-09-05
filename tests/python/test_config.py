@@ -1,8 +1,9 @@
 """Unit tests for Clow configuration management."""
 
-import os
 from pathlib import Path
+
 import pytest
+
 from training.utils.config import ClowSettings, load_config
 
 

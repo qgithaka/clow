@@ -1,8 +1,10 @@
 """Unit tests for chunked historical data extraction."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
+
 import pandas as pd
 import pytest
+
 from training.data.chunked_extractor import (
     CanonicalTimeframe,
     ChunkedHistoricalExtractor,
@@ -22,7 +24,7 @@ def test_canonical_timeframe_properties() -> None:
 def test_ohlcv_bar_schema() -> None:
     """Verify OHLCVBar validation."""
     bar = OHLCVBar(
-        timestamp_utc=datetime(2023, 1, 1, 12, 0, tzinfo=timezone.utc),
+        timestamp_utc=datetime(2023, 1, 1, 12, 0, tzinfo=UTC),
         open=1.0850,
         high=1.0860,
         low=1.0840,
@@ -37,21 +39,21 @@ def test_ohlcv_bar_schema() -> None:
 def test_generate_chunks_partitioning() -> None:
     """Verify slicing multi-year ranges into 1-year discrete intervals."""
     extractor = ChunkedHistoricalExtractor(chunk_years=1)
-    start = datetime(2020, 1, 1, tzinfo=timezone.utc)
-    end = datetime(2023, 6, 1, tzinfo=timezone.utc)
+    start = datetime(2020, 1, 1, tzinfo=UTC)
+    end = datetime(2023, 6, 1, tzinfo=UTC)
 
     chunks = extractor.generate_chunks(start, end)
     assert len(chunks) == 4
-    assert chunks[0].start_utc == datetime(2020, 1, 1, tzinfo=timezone.utc)
-    assert chunks[0].end_utc == datetime(2021, 1, 1, tzinfo=timezone.utc)
-    assert chunks[-1].end_utc == datetime(2023, 6, 1, tzinfo=timezone.utc)
+    assert chunks[0].start_utc == datetime(2020, 1, 1, tzinfo=UTC)
+    assert chunks[0].end_utc == datetime(2021, 1, 1, tzinfo=UTC)
+    assert chunks[-1].end_utc == datetime(2023, 6, 1, tzinfo=UTC)
 
 
 def test_invalid_chunk_dates_raise() -> None:
     """Verify start >= end raises ValueError."""
     extractor = ChunkedHistoricalExtractor()
-    start = datetime(2024, 1, 1, tzinfo=timezone.utc)
-    end = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    start = datetime(2024, 1, 1, tzinfo=UTC)
+    end = datetime(2023, 1, 1, tzinfo=UTC)
 
     with pytest.raises(ValueError, match="must be strictly earlier than"):
         extractor.generate_chunks(start, end)
@@ -60,11 +62,11 @@ def test_invalid_chunk_dates_raise() -> None:
 def test_extract_full_history_with_mock_fetcher() -> None:
     """Verify stitching multiple chunks with deduplication and progress callback."""
     extractor = ChunkedHistoricalExtractor(chunk_years=1)
-    start = datetime(2021, 1, 1, tzinfo=timezone.utc)
-    end = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    start = datetime(2021, 1, 1, tzinfo=UTC)
+    end = datetime(2023, 1, 1, tzinfo=UTC)
 
     def mock_fetcher(chunk: DateRangeChunk) -> pd.DataFrame:
-        dates = pd.date_range(chunk.start_utc, chunk.end_utc, freq="12h", tz=timezone.utc)
+        dates = pd.date_range(chunk.start_utc, chunk.end_utc, freq="12h", tz=UTC)
         return pd.DataFrame({
             "timestamp_utc": dates,
             "open": [1.08] * len(dates),

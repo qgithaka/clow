@@ -1,11 +1,12 @@
 """End-to-End Multi-Pair Paper Trading Simulation."""
 
+from typing import Any
+
 import numpy as np
-import pandas as pd
-from typing import Dict, Any, List
+
 
 class PythonPaperSimulation:
-    def __init__(self, symbols: List[str] = None, initial_balance: float = 50000.0, max_dd_pct: float = 4.0):
+    def __init__(self, symbols: list[str] = None, initial_balance: float = 50000.0, max_dd_pct: float = 4.0):
         self.symbols = symbols or ["EURUSD", "GBPUSD", "USDJPY"]
         self.initial_balance = initial_balance
         self.max_dd_pct = max_dd_pct
@@ -14,7 +15,7 @@ class PythonPaperSimulation:
         self.max_observed_dd = 0.0
         self.trades = []
 
-    def run_simulation(self, ticks_per_pair: int = 500) -> Dict[str, Any]:
+    def run_simulation(self, ticks_per_pair: int = 500) -> dict[str, Any]:
         total_ticks = 0
         signals_evaluated = 0
 

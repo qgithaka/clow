@@ -1,5 +1,5 @@
-import pytest
 from training.validation.run_paper_simulation import PythonPaperSimulation
+
 
 def test_python_paper_simulation():
     sim = PythonPaperSimulation(symbols=["EURUSD", "GBPUSD", "USDJPY"], initial_balance=50000.0)

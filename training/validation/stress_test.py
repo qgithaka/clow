@@ -4,12 +4,11 @@ Tests strategy robustness and positive expectancy under 2x, 3x, and 5x spread wi
 and execution latency slippage shocks.
 """
 
-from dataclasses import dataclass
 import logging
-from typing import Dict, List, Optional, Sequence, Tuple
+from collections.abc import Sequence
+from dataclasses import dataclass
+
 import numpy as np
-import pandas as pd
-from training.models.triple_barrier import TripleBarrierEngine
 
 logger = logging.getLogger("clow.validation.stress_test")
 
@@ -46,7 +45,7 @@ class SpreadShockSimulator:
         self,
         gross_returns_pips: Sequence[float],
         trade_sides: Sequence[int],
-    ) -> Dict[str, SpreadShockScenario]:
+    ) -> dict[str, SpreadShockScenario]:
         """Evaluates trade returns under multiple friction shock scenarios.
         
         Args:
@@ -56,7 +55,7 @@ class SpreadShockSimulator:
         Returns:
             Dict mapping scenario name to SpreadShockScenario.
         """
-        results: Dict[str, SpreadShockScenario] = {}
+        results: dict[str, SpreadShockScenario] = {}
         n_trades = len(gross_returns_pips)
         if n_trades == 0:
             return results

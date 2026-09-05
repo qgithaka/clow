@@ -3,10 +3,10 @@
 import numpy as np
 import pytest
 import torch
+
 from training.models.losses import (
-    PinballLoss,
-    MultiQuantileLoss,
     CompositeForecasterLoss,
+    PinballLoss,
     QuantileEvaluator,
 )
 

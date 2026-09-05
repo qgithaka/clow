@@ -1,31 +1,33 @@
 """Unit tests for historical data cleaning and weekend handling."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
+
 import numpy as np
 import pandas as pd
+
 from training.data.cleaner import DataCleaner
 
 
 def test_forex_weekend_detection() -> None:
     """Verify standard Forex weekend closure intervals."""
     # Friday 21:00 UTC -> Open
-    fri_open = datetime(2023, 10, 6, 21, 0, tzinfo=timezone.utc)
+    fri_open = datetime(2023, 10, 6, 21, 0, tzinfo=UTC)
     assert not DataCleaner.is_forex_weekend(fri_open)
 
     # Friday 23:00 UTC -> Closed
-    fri_closed = datetime(2023, 10, 6, 23, 0, tzinfo=timezone.utc)
+    fri_closed = datetime(2023, 10, 6, 23, 0, tzinfo=UTC)
     assert DataCleaner.is_forex_weekend(fri_closed)
 
     # Saturday 12:00 UTC -> Closed
-    sat_closed = datetime(2023, 10, 7, 12, 0, tzinfo=timezone.utc)
+    sat_closed = datetime(2023, 10, 7, 12, 0, tzinfo=UTC)
     assert DataCleaner.is_forex_weekend(sat_closed)
 
     # Sunday 20:00 UTC -> Closed
-    sun_closed = datetime(2023, 10, 8, 20, 0, tzinfo=timezone.utc)
+    sun_closed = datetime(2023, 10, 8, 20, 0, tzinfo=UTC)
     assert DataCleaner.is_forex_weekend(sun_closed)
 
     # Sunday 22:00 UTC -> Open
-    sun_open = datetime(2023, 10, 8, 22, 0, tzinfo=timezone.utc)
+    sun_open = datetime(2023, 10, 8, 22, 0, tzinfo=UTC)
     assert not DataCleaner.is_forex_weekend(sun_open)
 
 

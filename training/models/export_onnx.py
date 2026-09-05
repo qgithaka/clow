@@ -8,15 +8,16 @@ and metadata schema packaging for sub-5ms native C++ execution.
 import hashlib
 import json
 import logging
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
+from typing import Any
+
 import numpy as np
 import onnx
 import onnxruntime as ort
 import torch
-import torch.nn as nn
 
-from training.data.scalers import RollingZScoreScaler, RollingRobustScaler, RollingMinMaxScaler
+from training.data.scalers import RollingMinMaxScaler, RollingRobustScaler, RollingZScoreScaler
 from training.models.forecaster import ClowForecaster
 
 logger = logging.getLogger("clow.models.export_onnx")
@@ -28,7 +29,7 @@ class ONNXExporter:
     @staticmethod
     def export_forecaster(
         model: ClowForecaster,
-        output_path: Union[str, Path],
+        output_path: str | Path,
         input_dim: int,
         context_length: int = 64,
         batch_size: int = 1,
@@ -111,8 +112,8 @@ class ONNXExporter:
 
     @staticmethod
     def quantize_model(
-        input_onnx_path: Union[str, Path],
-        output_onnx_path: Optional[Union[str, Path]] = None,
+        input_onnx_path: str | Path,
+        output_onnx_path: str | Path | None = None,
     ) -> Path:
         """Applies dynamic INT8 quantization to an ONNX model for CPU acceleration.
         
@@ -144,12 +145,12 @@ class ONNXExporter:
     @staticmethod
     def verify_numerical_parity(
         torch_model: ClowForecaster,
-        onnx_path: Union[str, Path],
+        onnx_path: str | Path,
         input_dim: int,
         context_length: int = 64,
         batch_size: int = 1,
         tolerance: float = 1e-4,
-    ) -> Dict[str, float]:
+    ) -> dict[str, float]:
         """Verifies output numerical equivalence between PyTorch and ONNX Runtime.
         
         Args:
@@ -195,13 +196,13 @@ class ONNXExporter:
 
 def create_model_metadata(
     model_id: str,
-    feature_names: List[str],
+    feature_names: list[str],
     context_length: int,
     quantiles: Sequence[float],
-    scaler: Optional[Union[RollingZScoreScaler, RollingRobustScaler, RollingMinMaxScaler]] = None,
-    architecture_params: Optional[Dict[str, Any]] = None,
+    scaler: RollingZScoreScaler | RollingRobustScaler | RollingMinMaxScaler | None = None,
+    architecture_params: dict[str, Any] | None = None,
     description: str = "Clow Next-Candle Transformer Forecaster",
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Builds complete serialization metadata schema for C++ deployment.
     
     Args:
@@ -269,13 +270,13 @@ def create_model_metadata(
 
 def export_model_package(
     model: ClowForecaster,
-    feature_names: List[str],
-    output_dir: Union[str, Path],
+    feature_names: list[str],
+    output_dir: str | Path,
     model_id: str = "clow_forecaster_v1",
     context_length: int = 64,
-    scaler: Optional[Any] = None,
+    scaler: Any | None = None,
     quantize: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Packages model into complete production container with ONNX binary and metadata.
     
     Args:
