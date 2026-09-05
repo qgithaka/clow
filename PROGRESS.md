@@ -97,7 +97,7 @@ Model 2 takes the candle forecast and historical market context to construct opt
 
 ### Tasks
 
-- [ ] Implement Triple-Barrier labeling engine (Take-Profit vs Stop-Loss with time expiration horizon)
+- [x] Implement Triple-Barrier labeling engine (Take-Profit vs Stop-Loss with time expiration horizon)
 - [ ] Build Tactical Order Policy model (optimizes limit entry discount, SL buffer, and TP targets)
 - [ ] Implement dynamic order expiration calculator (cancels pending order if unfilled within $N$ bars)
 - [ ] Implement mathematical expectancy filter ($\text{Expected Value} > 0$ with friction deducted)
