@@ -117,11 +117,11 @@ Subjects all models and strategies to institutional validation standards before 
 ### Tasks
 
 - [x] Implement Purged Walk-Forward Cross-Validation with configurable embargo periods
-- [ ] Implement Synthetic Noise Permutation Test (proves models collapse to 50% coin-flip on shuffled noise)
-- [ ] Implement Broker Friction & Spread Shock Simulator (tests profitability under 3x widened spreads and 150ms slippage)
-- [ ] Implement Monte Carlo 1,000-run trade sequence simulation for worst-case drawdown estimation
-- [ ] Generate comprehensive Statistical Proof Report (Deflated Sharpe Ratio, Profit Factor, Max Drawdown, Win Rate)
-- [ ] Write unit tests verifying validation gate rejections on overfitting strategies
+- [x] Implement Synthetic Noise Permutation Test (proves models collapse to 50% coin-flip on shuffled noise)
+- [x] Implement Broker Friction & Spread Shock Simulator (tests profitability under 3x widened spreads and 150ms slippage)
+- [x] Implement Monte Carlo 1,000-run trade sequence simulation for worst-case drawdown estimation
+- [x] Generate comprehensive Statistical Proof Report (Deflated Sharpe Ratio, Profit Factor, Max Drawdown, Win Rate)
+- [x] Write unit tests verifying validation gate rejections on overfitting strategies
 
 ---
 
