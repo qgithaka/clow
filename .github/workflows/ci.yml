@@ -24,7 +24,8 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install ruff pytest pytest-cov numpy pandas torch onnx onnxruntime duckdb scipy statsmodels pyyaml pydantic scikit-learn transformers
+          pip install -e .[dev]
+          pip install statsmodels
 
       - name: Run Ruff Linter
         run: |
