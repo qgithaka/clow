@@ -63,7 +63,7 @@ Raw price numbers drift over time and cannot be fed to deep neural networks acro
 - [x] Implement institutional Forex session features (Asian, London, NY Overlap, London Close session timing masks)
 - [x] Implement multi-timeframe hierarchical context aligner (H1/H4 macro trends aligned to M1/M5 without future leakage)
 - [x] Implement strictly causal rolling scalers (zero future look-ahead leakage)
-- [ ] Write unit tests verifying strict stationarity and causality
+- [x] Write unit tests verifying strict stationarity and causality
 
 ---
 
