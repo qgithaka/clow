@@ -154,12 +154,12 @@ Implements the sovereign risk governance layer and the native C++ order state ma
 
 ### Tasks
 
-- [ ] Implement fractional risk and dynamic Kelly lot sizing engine based on account equity and stop distance
-- [ ] Implement Sovereign Risk Gates (Daily Max Drawdown limit, Max Open Trades limit, Max Spread filter)
-- [ ] Implement C++ Pending Order State Machine (PENDING $\to$ FILLED / EXPIRED / REJECTED / CANCELLED)
-- [ ] Implement instant Panic Kill-Switch (closes all open positions and cancels all pending orders in one call)
-- [ ] Implement immutable risk audit event logger
-- [ ] Write unit tests covering risk rejections, state transitions, and panic liquidation
+- [x] Implement fractional risk and dynamic Kelly lot sizing engine based on account equity and stop distance
+- [x] Implement Sovereign Risk Gates (Daily Max Drawdown limit, Max Open Trades limit, Max Spread filter)
+- [x] Implement C++ Pending Order State Machine (PENDING $\to$ FILLED / EXPIRED / REJECTED / CANCELLED)
+- [x] Implement instant Panic Kill-Switch (closes all open positions and cancels all pending orders in one call)
+- [x] Implement immutable risk audit event logger
+- [x] Write unit tests covering risk rejections, state transitions, and panic liquidation
 
 ---
 
