@@ -125,10 +125,10 @@ Subjects all models and strategies to institutional validation standards before 
 
 ---
 
-## M06 – ONNX Model Export & C++ Inference Engine 🔄 IN PROGRESS
+## M06 – ONNX Model Export & C++ Inference Engine ✅ COMPLETE
 
 **Branch:** `feat/m06-onnx-engine`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Converts trained PyTorch models into optimized, lightweight `.onnx` binaries and implements the native C++ ONNX Runtime inference engine capable of sub-5ms CPU execution with zero Python runtime dependencies.
@@ -144,22 +144,22 @@ Converts trained PyTorch models into optimized, lightweight `.onnx` binaries and
 
 ---
 
-## M07 – Sovereign Risk Manager & Order State Machine
+## M07 – Sovereign Risk Manager & Order State Machine 🔄 IN PROGRESS
 
 **Branch:** `feat/m07-risk-engine`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Implements the sovereign risk governance layer and the native C++ order state machine that controls trade sizing, enforces daily loss limits, manages pending order lifecycles, and executes panic kill-switch commands.
 
 ### Tasks
 
-- [ ] Implement fractional risk and dynamic Kelly lot sizing engine based on account equity and stop distance
-- [ ] Implement Sovereign Risk Gates (Daily Max Drawdown limit, Max Open Trades limit, Max Spread filter)
-- [ ] Implement C++ Pending Order State Machine (PENDING $\to$ FILLED / EXPIRED / REJECTED / CANCELLED)
-- [ ] Implement instant Panic Kill-Switch (closes all open positions and cancels all pending orders in one call)
-- [ ] Implement immutable risk audit event logger
-- [ ] Write unit tests covering risk rejections, state transitions, and panic liquidation
+- [x] Implement fractional risk and dynamic Kelly lot sizing engine based on account equity and stop distance
+- [x] Implement Sovereign Risk Gates (Daily Max Drawdown limit, Max Open Trades limit, Max Spread filter)
+- [x] Implement C++ Pending Order State Machine (PENDING $\to$ FILLED / EXPIRED / REJECTED / CANCELLED)
+- [x] Implement instant Panic Kill-Switch (closes all open positions and cancels all pending orders in one call)
+- [x] Implement immutable risk audit event logger
+- [x] Write unit tests covering risk rejections, state transitions, and panic liquidation
 
 ---
 

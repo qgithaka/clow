@@ -39,6 +39,7 @@ file(GLOB_RECURSE CLOW_CORE_SOURCES
     "src/broker/*.cpp"
     "src/ai/*.cpp"
     "src/data/*.cpp"
+    "src/risk/*.cpp"
 )
 
 file(GLOB_RECURSE CLOW_CORE_HEADERS
@@ -46,6 +47,7 @@ file(GLOB_RECURSE CLOW_CORE_HEADERS
     "src/broker/*.h"
     "src/ai/*.h"
     "src/data/*.h"
+    "src/risk/*.h"
 )
 
 # Build Static Core Engine Library
