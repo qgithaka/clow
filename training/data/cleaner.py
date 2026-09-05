@@ -84,6 +84,9 @@ class DataCleaner:
             & np.isfinite(clean_df["close"])
         )
 
+        if "spread" in clean_df.columns:
+            valid_mask = valid_mask & (clean_df["spread"] >= 0) & np.isfinite(clean_df["spread"])
+
         invalid_count = len(clean_df) - int(valid_mask.sum())
         stats["invalid_geometry_rows"] = invalid_count
         clean_df = clean_df[valid_mask].reset_index(drop=True)
