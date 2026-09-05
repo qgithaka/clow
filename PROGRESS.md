@@ -7,10 +7,10 @@ All permanent rules (branching strategy, commit format, PR generation, how to ma
 
 ---
 
-## M00 – Monorepo Foundation & Build Systems 🔄 IN PROGRESS
+## M00 – Monorepo Foundation & Build Systems ✅ COMPLETE
 
 **Branch:** `feat/m00-foundation`  
-**Status:** Active – agent is working here
+**Status:** Completed – ready for PR merge into `development`
 
 ### Context
 Clow is structured as a unified monorepo containing both the Python AI Training Lab (`training/`) and the C++ Qt Desktop Terminal (`src/`). This milestone establishes the complete directory scaffold, build systems, configuration management, logging, and automated test runners.
@@ -23,7 +23,7 @@ Clow is structured as a unified monorepo containing both the Python AI Training 
 - [x] Implement central configuration management (YAML + Pydantic for Python, JSON/Settings for C++)
 - [x] Implement structured logging with severity levels (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 - [x] Create minimal CLI and test runners for both Python and C++ targets
-- [ ] Add `.gitignore`, `.env.example`, and baseline `README.md`
+- [x] Add `.gitignore`, `.env.example`, and baseline `README.md`
 
 ---
 
