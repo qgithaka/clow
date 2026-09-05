@@ -60,7 +60,7 @@ Raw price numbers drift over time and cannot be fed to deep neural networks acro
 - [x] Implement scale-free candle anatomy features (Body Ratio, Upper/Lower Wick Ratios, Range-to-ATR)
 - [x] Implement normalized momentum indicators (Rolling Z-score deviations from EMAs, stationary RSI, MACD ratios)
 - [x] Implement volatility regime features (Normalized ATR, rolling Bollinger Band width, volatility expansion ratios)
-- [ ] Implement institutional Forex session features (Asian, London, NY Overlap, London Close session timing masks)
+- [x] Implement institutional Forex session features (Asian, London, NY Overlap, London Close session timing masks)
 - [ ] Implement multi-timeframe hierarchical context aligner (H1/H4 macro trends aligned to M1/M5 without future leakage)
 - [ ] Implement strictly causal rolling scalers (zero future look-ahead leakage)
 - [ ] Write unit tests verifying strict stationarity and causality
