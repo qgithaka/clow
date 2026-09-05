@@ -22,7 +22,7 @@ Clow is structured as a unified monorepo containing both the Python AI Training 
 - [x] Configure modern `CMakeLists.txt` for C++20, Qt 6, and ONNX Runtime C++ SDK
 - [x] Implement central configuration management (YAML + Pydantic for Python, JSON/Settings for C++)
 - [x] Implement structured logging with severity levels (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-- [ ] Create minimal CLI and test runners for both Python and C++ targets
+- [x] Create minimal CLI and test runners for both Python and C++ targets
 - [ ] Add `.gitignore`, `.env.example`, and baseline `README.md`
 
 ---
