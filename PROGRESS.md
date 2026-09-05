@@ -182,10 +182,10 @@ Builds the core modern dark-mode desktop terminal in C++ Qt 6, featuring respons
 
 ---
 
-## M09 – Hardware-Accelerated Charting & Ghost-Candle Overlays 🔄 IN PROGRESS
+## M09 – Hardware-Accelerated Charting & Ghost-Candle Overlays ✅ COMPLETE
 
 **Branch:** `feat/m09-charting-engine`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Implements hardware-accelerated 60+ FPS candlestick charting in C++ Qt (OpenGL / QCustomPlot) with real-time MT5 tick streaming and predictive **"Ghost Candle"** overlay rendering showing Model 1 forecasted High, Low, and Close bounds.
@@ -201,10 +201,10 @@ Implements hardware-accelerated 60+ FPS candlestick charting in C++ Qt (OpenGL /
 
 ---
 
-## M10 – Tactical AI Radar & Co-Pilot / Auto-Pilot Dashboard
+## M10 – Tactical AI Radar & Co-Pilot / Auto-Pilot Dashboard 🔄 IN PROGRESS
 
 **Branch:** `feat/m10-trading-dashboard`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Integrates the full live trading experience into the desktop terminal, featuring the Tactical AI Radar panel, Co-Pilot manual order approval, Auto-Pilot autonomous trigger loops, and the live MT5 positions/orders dock.
