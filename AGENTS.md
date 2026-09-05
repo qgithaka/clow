@@ -23,7 +23,7 @@ If you ever feel tempted to optimize for an impressive backtest at the expense o
 
 ## 2. Absolute Rules (Never Violate)
 
-1. **Never work directly on `development`, `staging`, or `main`.**  
+1. **Never work directly on `production`, `staging`, or `development`.**  
    You may only commit to the current feature/milestone branch (`feat/mXX-...`).
 
 2. **Never implement more than the current milestone allows.**  
@@ -75,7 +75,6 @@ If you ever feel tempted to optimize for an impressive backtest at the expense o
 - You will receive:
   - The current milestone contract (from `PROGRESS.md`)
   - The current state of the codebase on the feature branch
-- You must **not** request or assume the entire specification unless the human explicitly provides it.
 - Completed milestones remain in `PROGRESS.md` so you accumulate context over time.  
   You still work **only** on the newest (in-progress) milestone unless the human explicitly tells you otherwise.
 
@@ -87,8 +86,7 @@ If you ever feel tempted to optimize for an impressive backtest at the expense o
 - Write tests together with (or before) the implementation.
 - Prefer clear, readable, modern C++ (C++20) and well-typed Python (3.11+).
 - Follow the directory structure defined in the specification.
-- When a task is finished, mark it done in `PROGRESS.md` (see Section 11) and stop to wait for human review if required.
-- Do not open a pull request or merge anything yourself unless explicitly instructed.
+- When a task is finished, mark it done in `PROGRESS.md` (see Section 11).
 
 ---
 
@@ -125,30 +123,13 @@ Exactly two paragraphs, each written as a single unbroken line:
 - Blank line between the two paragraphs
 - No bullet points, no lists, no line wrapping inside paragraphs
 
-### Workflow
-
-1. Run `git status` and `git diff` (or `git diff --cached`)
-2. Stage the relevant changes with `git add`
-3. Create exactly one conventional commit following the format above
-4. Repeat until the working tree is clean
-5. **Never push**
-
-Example:
-
-```
-feat(`/src/broker`): implement direct MT5 IPC connection in `mt5_bridge.cpp`
-
-Implemented native Windows named pipe connection to MetaTrader 5 terminal without requiring Expert Advisors.
-
-Enables low-latency account inspection and pending order execution directly from the C++ Qt terminal.
-```
-
 ---
 
-## 7. Pull Request Summary Rules (Mandatory)
+## 7. Pull Request & Merge Message Rules (Mandatory)
 
-When asked to generate a PR summary, produce a message that can be used as a squash commit.  
-Fetch the commits yourself with `git log development..HEAD` (or equivalent).
+The AI agent is responsible for creating Pull Requests (PRs) via the GitHub CLI (`gh pr create`) when a milestone is completed.
+
+When creating a PR or generating a squash merge commit message, you must follow this exact format:
 
 ### Exact Format
 
@@ -164,7 +145,8 @@ pr(`/`): <short description with backticked filename>
 - Scope is always `` `/` ``
 - Exactly two single-line paragraphs
 - No bullet points or lists
-- Synthesize the entire PR into one coherent summary
+- Synthesize the entire PR / Milestone into one coherent summary
+- When merging via GitHub or locally, the pull request title and description will serve directly as the merge commit message.
 
 ---
 
@@ -181,12 +163,12 @@ A task is only done when:
 
 ## 9. Where to Find the Current Work
 
-All milestones, branch names, tasks, and human review checklists live in:
+All milestones, branch names, tasks, and progress live in:
 
 → **`PROGRESS.md`**
 
 Start there.  
-Read the Global Working Rules, then locate the milestone marked **🔄 IN PROGRESS**. That is the only milestone you are allowed to work on unless the human says otherwise.
+Locate the milestone marked **🔄 IN PROGRESS**. That is the only milestone you are allowed to work on unless the human says otherwise.
 
 ---
 
@@ -208,20 +190,15 @@ You must keep `PROGRESS.md` accurate as you work. Follow this exact format.
 ### Marking a single task complete
 
 Change:
-
 ```markdown
 - [ ] Implement chunked historical data extractor
 ```
-
 To:
-
 ```markdown
 - [x] Implement chunked historical data extractor
 ```
 
-Do this as soon as the task is finished and committed.  
-Then commit the progress update itself:
-
+Do this as soon as the task is finished and committed. Then commit the progress update:
 ```
 chore(`/`): mark chunked extractor task complete in `PROGRESS.md`
 
@@ -234,12 +211,12 @@ Keeps the milestone tracker accurate for the human reviewer.
 
 - While work is ongoing:
 ```markdown
-### M01 – Data Engine & MT5 Bridge 🔄 IN PROGRESS
+### M01 – Monorepo Foundation 🔄 IN PROGRESS
 ```
 
-- Ready for human review (only human marks complete):
+- When all tasks in the milestone are complete:
 ```markdown
-### M01 – Data Engine & MT5 Bridge ✅ COMPLETE
+### M01 – Monorepo Foundation ✅ COMPLETE
 ```
 
 ---
