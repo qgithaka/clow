@@ -19,7 +19,7 @@ Clow is structured as a unified monorepo containing both the Python AI Training 
 
 - [x] Create the complete monorepo directory layout (`training/`, `src/`, `models/`, `tests/`)
 - [x] Configure `pyproject.toml` with PyTorch, Transformers, ONNX, MetaTrader5, DuckDB, PyArrow, Ruff, MyPy, and PyTest
-- [ ] Configure modern `CMakeLists.txt` for C++20, Qt 6, and ONNX Runtime C++ SDK
+- [x] Configure modern `CMakeLists.txt` for C++20, Qt 6, and ONNX Runtime C++ SDK
 - [ ] Implement central configuration management (YAML + Pydantic for Python, JSON/Settings for C++)
 - [ ] Implement structured logging with severity levels (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 - [ ] Create minimal CLI and test runners for both Python and C++ targets
