@@ -87,10 +87,10 @@ Implements the deep time-series foundation model pipeline (fine-tuning Chronos /
 
 ---
 
-## M04 – Clow-Tactical Order Policy Lab 🔄 IN PROGRESS
+## M04 – Clow-Tactical Order Policy Lab ✅ COMPLETE
 
 **Branch:** `feat/m04-tactical-order-lab`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Model 2 takes the candle forecast and historical market context to construct optimal pending orders (`BUY_LIMIT`, `SELL_LIMIT`, entry level, dynamic stop-loss, take-profit, and expiration horizon) using asymmetric Triple-Barrier labeling.
@@ -106,22 +106,22 @@ Model 2 takes the candle forecast and historical market context to construct opt
 
 ---
 
-## M05 – Zero-Leakage Validation & Statistical Proof Engine
+## M05 – Zero-Leakage Validation & Statistical Proof Engine 🔄 IN PROGRESS
 
 **Branch:** `feat/m05-proof-engine`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Subjects all models and strategies to institutional validation standards before any deployment is permitted. Prevents curve-fitting through purged walk-forward cross-validation, synthetic noise permutation tests, and spread/slippage stress testing.
 
 ### Tasks
 
-- [ ] Implement Purged Walk-Forward Cross-Validation with configurable embargo periods
-- [ ] Implement Synthetic Noise Permutation Test (proves models collapse to 50% coin-flip on shuffled noise)
-- [ ] Implement Broker Friction & Spread Shock Simulator (tests profitability under 3x widened spreads and 150ms slippage)
-- [ ] Implement Monte Carlo 1,000-run trade sequence simulation for worst-case drawdown estimation
-- [ ] Generate comprehensive Statistical Proof Report (Deflated Sharpe Ratio, Profit Factor, Max Drawdown, Win Rate)
-- [ ] Write unit tests verifying validation gate rejections on overfitting strategies
+- [x] Implement Purged Walk-Forward Cross-Validation with configurable embargo periods
+- [x] Implement Synthetic Noise Permutation Test (proves models collapse to 50% coin-flip on shuffled noise)
+- [x] Implement Broker Friction & Spread Shock Simulator (tests profitability under 3x widened spreads and 150ms slippage)
+- [x] Implement Monte Carlo 1,000-run trade sequence simulation for worst-case drawdown estimation
+- [x] Generate comprehensive Statistical Proof Report (Deflated Sharpe Ratio, Profit Factor, Max Drawdown, Win Rate)
+- [x] Write unit tests verifying validation gate rejections on overfitting strategies
 
 ---
 
