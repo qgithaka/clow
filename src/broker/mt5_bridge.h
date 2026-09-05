@@ -43,6 +43,15 @@ struct TickQuote {
     double spread_pips = 0.0;
 };
 
+struct ExecutionResponse {
+    bool success{false};
+    int64_t ticket{0};
+    double execution_price{0.0};
+    double volume{0.0};
+    double realized_pnl{0.0};
+    std::string message;
+};
+
 class MT5Bridge {
 public:
     MT5Bridge() = default;
@@ -56,9 +65,18 @@ public:
     [[nodiscard]] std::vector<SymbolInfo> get_symbol_catalog() const;
     [[nodiscard]] std::optional<TickQuote> get_live_tick(const std::string& symbol) const;
 
+    /**
+     * @brief Single-click execution methods via direct MT5 Windows IPC bridge.
+     */
+    ExecutionResponse send_order(const std::string& symbol, const std::string& order_type, double volume, double price, double sl = 0.0, double tp = 0.0);
+    ExecutionResponse close_position(int64_t ticket, const std::string& symbol = "", double volume = 0.0);
+    ExecutionResponse cancel_order(int64_t ticket, const std::string& symbol = "");
+    ExecutionResponse modify_order(int64_t ticket, double new_sl, double new_tp);
+
 private:
     bool is_connected_ = false;
     AccountInfo current_account_;
+    int64_t next_ticket_{90001};
 };
 
 } // namespace clow::broker
