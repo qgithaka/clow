@@ -144,10 +144,10 @@ Converts trained PyTorch models into optimized, lightweight `.onnx` binaries and
 
 ---
 
-## M07 – Sovereign Risk Manager & Order State Machine 🔄 IN PROGRESS
+## M07 – Sovereign Risk Manager & Order State Machine ✅ COMPLETE
 
 **Branch:** `feat/m07-risk-engine`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Implements the sovereign risk governance layer and the native C++ order state machine that controls trade sizing, enforces daily loss limits, manages pending order lifecycles, and executes panic kill-switch commands.
@@ -163,22 +163,22 @@ Implements the sovereign risk governance layer and the native C++ order state ma
 
 ---
 
-## M08 – C++ Qt Modern Desktop Terminal & Navigation
+## M08 – C++ Qt Modern Desktop Terminal & Navigation 🔄 IN PROGRESS
 
 **Branch:** `feat/m08-desktop-ui`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Builds the core modern dark-mode desktop terminal in C++ Qt 6, featuring responsive multi-viewport layouts, broker profile switching, account status telemetry, and configuration control panels.
 
 ### Tasks
 
-- [ ] Build Qt 6 MainWindow layout with responsive splitters and dark-mode styling
-- [ ] Implement Top Telemetry Header (Broker connection status, Account Balance, Equity, Server Ping, Trading Mode)
-- [ ] Implement Left Control Sidebar (Pair selector, Timeframe selector, Model selector, Mode toggle)
-- [ ] Implement Broker Account Manager modal (secure credential storage, account switcher, connection status)
-- [ ] Implement Status & Notification toast system for trade events and errors
-- [ ] Write UI unit tests verifying state updates, mode toggles, and account switching
+- [x] Build Qt 6 MainWindow layout with responsive splitters and dark-mode styling
+- [x] Implement Top Telemetry Header (Broker connection status, Account Balance, Equity, Server Ping, Trading Mode)
+- [x] Implement Left Control Sidebar (Pair selector, Timeframe selector, Model selector, Mode toggle)
+- [x] Implement Broker Account Manager modal (secure credential storage, account switcher, connection status)
+- [x] Implement Status & Notification toast system for trade events and errors
+- [x] Write UI unit tests verifying state updates, mode toggles, and account switching
 
 ---
 
