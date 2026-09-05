@@ -244,3 +244,30 @@ class FeatureEngineer:
         res["is_weekend_close_risk"] = ((dow == 4) & (hour >= 20)).astype(float)
 
         return res
+
+    @classmethod
+    def compute_all_features(
+        cls,
+        df: pd.DataFrame,
+        htf_dict: Optional[Dict[str, pd.DataFrame]] = None,
+    ) -> pd.DataFrame:
+        """Executes the complete stationary feature engineering pipeline."""
+        if df.empty:
+            return pd.DataFrame()
+
+        # 1. Candle Anatomy & ATR
+        res = cls.compute_candle_anatomy(df)
+        # 2. Normalized Momentum Indicators
+        res = cls.compute_momentum_indicators(res)
+        # 3. Volatility Regimes
+        res = cls.compute_volatility_features(res)
+        # 4. Session Features
+        if "timestamp_utc" in res.columns:
+            res = cls.compute_session_features(res)
+
+        # 5. Multi-Timeframe Hierarchical Alignment if provided
+        if htf_dict:
+            from training.data.multi_timeframe import MultiTimeframeAligner
+            res = MultiTimeframeAligner.align_multi_timeframes(res, htf_dict)
+
+        return res
