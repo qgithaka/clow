@@ -125,10 +125,10 @@ Subjects all models and strategies to institutional validation standards before 
 
 ---
 
-## M06 – ONNX Model Export & C++ Inference Engine 🔄 IN PROGRESS
+## M06 – ONNX Model Export & C++ Inference Engine ✅ COMPLETE
 
 **Branch:** `feat/m06-onnx-engine`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Converts trained PyTorch models into optimized, lightweight `.onnx` binaries and implements the native C++ ONNX Runtime inference engine capable of sub-5ms CPU execution with zero Python runtime dependencies.
@@ -144,10 +144,10 @@ Converts trained PyTorch models into optimized, lightweight `.onnx` binaries and
 
 ---
 
-## M07 – Sovereign Risk Manager & Order State Machine
+## M07 – Sovereign Risk Manager & Order State Machine 🔄 IN PROGRESS
 
 **Branch:** `feat/m07-risk-engine`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Implements the sovereign risk governance layer and the native C++ order state machine that controls trade sizing, enforces daily loss limits, manages pending order lifecycles, and executes panic kill-switch commands.
