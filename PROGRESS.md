@@ -182,10 +182,10 @@ Builds the core modern dark-mode desktop terminal in C++ Qt 6, featuring respons
 
 ---
 
-## M09 – Hardware-Accelerated Charting & Ghost-Candle Overlays 🔄 IN PROGRESS
+## M09 – Hardware-Accelerated Charting & Ghost-Candle Overlays ✅ COMPLETE
 
 **Branch:** `feat/m09-charting-engine`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Implements hardware-accelerated 60+ FPS candlestick charting in C++ Qt (OpenGL / QCustomPlot) with real-time MT5 tick streaming and predictive **"Ghost Candle"** overlay rendering showing Model 1 forecasted High, Low, and Close bounds.
@@ -201,22 +201,22 @@ Implements hardware-accelerated 60+ FPS candlestick charting in C++ Qt (OpenGL /
 
 ---
 
-## M10 – Tactical AI Radar & Co-Pilot / Auto-Pilot Dashboard
+## M10 – Tactical AI Radar & Co-Pilot / Auto-Pilot Dashboard 🔄 IN PROGRESS
 
 **Branch:** `feat/m10-trading-dashboard`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Integrates the full live trading experience into the desktop terminal, featuring the Tactical AI Radar panel, Co-Pilot manual order approval, Auto-Pilot autonomous trigger loops, and the live MT5 positions/orders dock.
 
 ### Tasks
 
-- [ ] Implement Tactical AI Radar panel (displays Model 1 confidence, direction, and Model 2 order proposals)
-- [ ] Implement Co-Pilot Mode workflow (renders proposed order parameters with instant [Approve] / [Reject] buttons)
-- [ ] Implement Auto-Pilot Mode workflow (autonomously dispatches pending orders to MT5 when Confidence $> 70\%$)
-- [ ] Implement Bottom Dock Live Position & Order Table (shows tickets, volumes, entry, floating P/L, and Close buttons)
-- [ ] Implement single-click ticket cancellation and position closing via direct MT5 bridge
-- [ ] Write integration tests for Co-Pilot approvals and Auto-Pilot trigger dispatches
+- [x] Implement Tactical AI Radar panel (displays Model 1 confidence, direction, and Model 2 order proposals)
+- [x] Implement Co-Pilot Mode workflow (renders proposed order parameters with instant [Approve] / [Reject] buttons)
+- [x] Implement Auto-Pilot Mode workflow (autonomously dispatches pending orders to MT5 when Confidence $> 70\%$)
+- [x] Implement Bottom Dock Live Position & Order Table (shows tickets, volumes, entry, floating P/L, and Close buttons)
+- [x] Implement single-click ticket cancellation and position closing via direct MT5 bridge
+- [x] Write integration tests for Co-Pilot approvals and Auto-Pilot trigger dispatches
 
 ---
 
