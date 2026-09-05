@@ -24,6 +24,14 @@ void test_account_manager();
 void test_toast_manager();
 void test_main_window_controller();
 
+// Forward declarations of M09 Chart Engine test functions
+void test_chart_series_and_viewport();
+void test_chart_feed_tick_aggregation();
+void test_ghost_candle_overlay();
+void test_confidence_corridor();
+void test_order_canvas_overlay();
+void test_chart_rendering_fps_benchmark();
+
 void test_config_defaults() {
     auto cfg = clow::core::ClowConfig::load_defaults();
     assert(cfg.mt5().server == "MetaQuotes-Demo");
@@ -65,6 +73,14 @@ int main() {
     test_account_manager();
     test_toast_manager();
     test_main_window_controller();
+
+    // M09 Chart Engine tests
+    test_chart_series_and_viewport();
+    test_chart_feed_tick_aggregation();
+    test_ghost_candle_overlay();
+    test_confidence_corridor();
+    test_order_canvas_overlay();
+    test_chart_rendering_fps_benchmark();
 
     std::cout << "All C++ unit tests passed successfully!" << std::endl;
     return 0;
