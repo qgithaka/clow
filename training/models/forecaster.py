@@ -45,6 +45,9 @@ class ClowForecaster(nn.Module):
         super().__init__()
         self.input_dim = input_dim
         self.d_model = d_model
+        self.nhead = nhead
+        self.num_layers = num_layers
+        self.dim_feedforward = dim_feedforward
         self.quantiles = list(quantiles)
         self.num_quantiles = len(self.quantiles)
         self.num_anatomy_targets = num_anatomy_targets

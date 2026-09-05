@@ -185,6 +185,9 @@ class ForecasterTrainer:
             "feature_cols": self.feature_cols,
             "input_dim": self.model.input_dim,
             "d_model": self.model.d_model,
+            "nhead": self.model.nhead,
+            "num_layers": self.model.num_layers,
+            "dim_feedforward": self.model.dim_feedforward,
             "quantiles": self.model.quantiles,
             "num_anatomy_targets": self.model.num_anatomy_targets,
         }
