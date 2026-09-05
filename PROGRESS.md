@@ -106,10 +106,10 @@ Model 2 takes the candle forecast and historical market context to construct opt
 
 ---
 
-## M05 – Zero-Leakage Validation & Statistical Proof Engine 🔄 IN PROGRESS
+## M05 – Zero-Leakage Validation & Statistical Proof Engine ✅ COMPLETE
 
 **Branch:** `feat/m05-proof-engine`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Subjects all models and strategies to institutional validation standards before any deployment is permitted. Prevents curve-fitting through purged walk-forward cross-validation, synthetic noise permutation tests, and spread/slippage stress testing.
@@ -125,22 +125,22 @@ Subjects all models and strategies to institutional validation standards before 
 
 ---
 
-## M06 – ONNX Model Export & C++ Inference Engine
+## M06 – ONNX Model Export & C++ Inference Engine 🔄 IN PROGRESS
 
 **Branch:** `feat/m06-onnx-engine`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Converts trained PyTorch models into optimized, lightweight `.onnx` binaries and implements the native C++ ONNX Runtime inference engine capable of sub-5ms CPU execution with zero Python runtime dependencies.
 
 ### Tasks
 
-- [ ] Implement PyTorch-to-ONNX conversion and quantization (FP16 / INT8) for Model 1 and Model 2
-- [ ] Package model metadata, input/output tensor schemas, and feature normalization constants into `model_metadata.json`
-- [ ] Implement native C++ ONNX Runtime wrapper in `src/ai/onnx_engine.cpp`
-- [ ] Implement C++ sliding window buffer and SIMD-accelerated feature normalizer
-- [ ] Benchmark and optimize end-to-end C++ inference latency to $< 5\text{ms}$ on CPU
-- [ ] Write C++ unit tests verifying ONNX outputs match Python PyTorch outputs within $10^{-5}$ tolerance
+- [x] Implement PyTorch-to-ONNX conversion and quantization (FP16 / INT8) for Model 1 and Model 2
+- [x] Package model metadata, input/output tensor schemas, and feature normalization constants into `model_metadata.json`
+- [x] Implement native C++ ONNX Runtime wrapper in `src/ai/onnx_engine.cpp`
+- [x] Implement C++ sliding window buffer and SIMD-accelerated feature normalizer
+- [x] Benchmark and optimize end-to-end C++ inference latency to $< 5\text{ms}$ on CPU
+- [x] Write C++ unit tests verifying ONNX outputs match Python PyTorch outputs within $10^{-5}$ tolerance
 
 ---
 

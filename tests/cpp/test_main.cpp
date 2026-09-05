@@ -3,6 +3,12 @@
 #include "../../src/core/config.h"
 #include "../../src/core/logger.h"
 
+// Forward declarations of test functions from test_onnx_inference.cpp
+void test_sliding_window_buffer();
+void test_feature_normalizer();
+void test_onnx_inference_engine_execution();
+void test_inference_benchmark_latency_gate();
+
 void test_config_defaults() {
     auto cfg = clow::core::ClowConfig::load_defaults();
     assert(cfg.mt5().server == "MetaQuotes-Demo");
@@ -21,6 +27,10 @@ int main() {
     std::cout << "Running Clow C++ test suite..." << std::endl;
     test_config_defaults();
     test_logger_emission();
-    std::cout << "All C++ unit tests passed!" << std::endl;
+    test_sliding_window_buffer();
+    test_feature_normalizer();
+    test_onnx_inference_engine_execution();
+    test_inference_benchmark_latency_gate();
+    std::cout << "All C++ unit tests passed successfully!" << std::endl;
     return 0;
 }
