@@ -173,12 +173,12 @@ Builds the core modern dark-mode desktop terminal in C++ Qt 6, featuring respons
 
 ### Tasks
 
-- [ ] Build Qt 6 MainWindow layout with responsive splitters and dark-mode styling
-- [ ] Implement Top Telemetry Header (Broker connection status, Account Balance, Equity, Server Ping, Trading Mode)
-- [ ] Implement Left Control Sidebar (Pair selector, Timeframe selector, Model selector, Mode toggle)
-- [ ] Implement Broker Account Manager modal (secure credential storage, account switcher, connection status)
-- [ ] Implement Status & Notification toast system for trade events and errors
-- [ ] Write UI unit tests verifying state updates, mode toggles, and account switching
+- [x] Build Qt 6 MainWindow layout with responsive splitters and dark-mode styling
+- [x] Implement Top Telemetry Header (Broker connection status, Account Balance, Equity, Server Ping, Trading Mode)
+- [x] Implement Left Control Sidebar (Pair selector, Timeframe selector, Model selector, Mode toggle)
+- [x] Implement Broker Account Manager modal (secure credential storage, account switcher, connection status)
+- [x] Implement Status & Notification toast system for trade events and errors
+- [x] Write UI unit tests verifying state updates, mode toggles, and account switching
 
 ---
 
