@@ -200,3 +200,47 @@ class FeatureEngineer:
         res["is_volatility_squeeze"] = ((bb_upper < keltner_upper) & (bb_lower > keltner_lower)).astype(float)
 
         return res
+
+    @classmethod
+    def compute_session_features(cls, df: pd.DataFrame) -> pd.DataFrame:
+        """Computes institutional Forex session masks and cyclical continuous time embeddings."""
+        if df.empty or "timestamp_utc" not in df.columns:
+            return pd.DataFrame()
+
+        res = df.copy()
+        ts = pd.to_datetime(res["timestamp_utc"], utc=True)
+
+        hour = ts.dt.hour
+        minute = ts.dt.minute
+        dow = ts.dt.dayofweek
+        minute_of_day = hour * 60 + minute
+
+        # 1. Cyclical Time Continuous Embeddings (stationary [-1.0, 1.0])
+        res["sin_time_of_day"] = np.sin(2.0 * np.pi * minute_of_day / 1440.0)
+        res["cos_time_of_day"] = np.cos(2.0 * np.pi * minute_of_day / 1440.0)
+        res["sin_day_of_week"] = np.sin(2.0 * np.pi * dow / 7.0)
+        res["cos_day_of_week"] = np.cos(2.0 * np.pi * dow / 7.0)
+
+        # 2. Institutional Session Binary Masks (in UTC)
+        # Asian Session: 00:00 - 08:00 UTC
+        res["session_asian"] = ((hour >= 0) & (hour < 8)).astype(float)
+
+        # London Session: 07:00 - 16:00 UTC
+        res["session_london"] = ((hour >= 7) & (hour < 16)).astype(float)
+
+        # London Open Breakout Window: 07:00 - 10:00 UTC
+        res["session_london_open"] = ((hour >= 7) & (hour < 10)).astype(float)
+
+        # New York Session: 12:00 - 21:00 UTC
+        res["session_ny"] = ((hour >= 12) & (hour < 21)).astype(float)
+
+        # London / NY Peak Liquidity Overlap: 12:00 - 16:00 UTC
+        res["session_ny_london_overlap"] = ((hour >= 12) & (hour < 16)).astype(float)
+
+        # London Fixing / Close Window: 15:00 - 17:00 UTC
+        res["session_london_close"] = ((hour >= 15) & (hour < 17)).astype(float)
+
+        # Weekend Approaching (Friday >= 20:00 UTC)
+        res["is_weekend_close_risk"] = ((dow == 4) & (hour >= 20)).astype(float)
+
+        return res
