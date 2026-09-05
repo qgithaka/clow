@@ -163,10 +163,10 @@ Implements the sovereign risk governance layer and the native C++ order state ma
 
 ---
 
-## M08 – C++ Qt Modern Desktop Terminal & Navigation 🔄 IN PROGRESS
+## M08 – C++ Qt Modern Desktop Terminal & Navigation ✅ COMPLETE
 
 **Branch:** `feat/m08-desktop-ui`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Builds the core modern dark-mode desktop terminal in C++ Qt 6, featuring responsive multi-viewport layouts, broker profile switching, account status telemetry, and configuration control panels.
@@ -182,10 +182,10 @@ Builds the core modern dark-mode desktop terminal in C++ Qt 6, featuring respons
 
 ---
 
-## M09 – Hardware-Accelerated Charting & Ghost-Candle Overlays
+## M09 – Hardware-Accelerated Charting & Ghost-Candle Overlays 🔄 IN PROGRESS
 
 **Branch:** `feat/m09-charting-engine`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Implements hardware-accelerated 60+ FPS candlestick charting in C++ Qt (OpenGL / QCustomPlot) with real-time MT5 tick streaming and predictive **"Ghost Candle"** overlay rendering showing Model 1 forecasted High, Low, and Close bounds.
