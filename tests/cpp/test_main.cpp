@@ -32,6 +32,13 @@ void test_confidence_corridor();
 void test_order_canvas_overlay();
 void test_chart_rendering_fps_benchmark();
 
+// Forward declarations of M10 Trading Dashboard test functions
+void test_tactical_radar_telemetry();
+void test_copilot_order_approval_workflow();
+void test_autopilot_execution_loop();
+void test_positions_table_mark_to_market();
+void test_execution_controller_lifecycle();
+
 void test_config_defaults() {
     auto cfg = clow::core::ClowConfig::load_defaults();
     assert(cfg.mt5().server == "MetaQuotes-Demo");
@@ -81,6 +88,13 @@ int main() {
     test_confidence_corridor();
     test_order_canvas_overlay();
     test_chart_rendering_fps_benchmark();
+
+    // M10 Trading Dashboard tests
+    test_tactical_radar_telemetry();
+    test_copilot_order_approval_workflow();
+    test_autopilot_execution_loop();
+    test_positions_table_mark_to_market();
+    test_execution_controller_lifecycle();
 
     std::cout << "All C++ unit tests passed successfully!" << std::endl;
     return 0;
