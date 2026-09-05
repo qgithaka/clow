@@ -3,18 +3,26 @@
 #include "../../src/core/config.h"
 #include "../../src/core/logger.h"
 
-// Forward declarations of M06 test functions
+// Forward declarations of M06 AI test functions
 void test_sliding_window_buffer();
 void test_feature_normalizer();
 void test_onnx_inference_engine_execution();
 void test_inference_benchmark_latency_gate();
 
-// Forward declarations of M07 test functions
+// Forward declarations of M07 Risk test functions
 void test_position_sizer_formulas();
 void test_sovereign_risk_gates();
 void test_order_state_machine_lifecycle();
 void test_kill_switch_panic_liquidation();
 void test_risk_audit_logger();
+
+// Forward declarations of M08 Desktop UI test functions
+void test_theme_styling();
+void test_telemetry_header();
+void test_sidebar_controller();
+void test_account_manager();
+void test_toast_manager();
+void test_main_window_controller();
 
 void test_config_defaults() {
     auto cfg = clow::core::ClowConfig::load_defaults();
@@ -49,6 +57,14 @@ int main() {
     test_order_state_machine_lifecycle();
     test_kill_switch_panic_liquidation();
     test_risk_audit_logger();
+
+    // M08 Desktop UI tests
+    test_theme_styling();
+    test_telemetry_header();
+    test_sidebar_controller();
+    test_account_manager();
+    test_toast_manager();
+    test_main_window_controller();
 
     std::cout << "All C++ unit tests passed successfully!" << std::endl;
     return 0;
