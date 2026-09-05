@@ -230,8 +230,8 @@ Performs full end-to-end integration and paper trading simulation, configures au
 
 ### Tasks
 
-- [ ] Run full end-to-end paper simulation against live MT5 tick streams across multiple pairs
-- [ ] Configure GitHub Actions CI workflow (linting, Python tests, C++ compilation, test suites)
-- [ ] Configure GitHub Actions CD release workflow to build standalone Windows `.exe` installer (InnoSetup / CPack)
-- [ ] Bundle pre-trained ONNX models and documentation into release packaging
-- [ ] Conduct final system audit and security review
+- [x] Run full end-to-end paper simulation against live MT5 tick streams across multiple pairs
+- [x] Configure GitHub Actions CI workflow (linting, Python tests, C++ compilation, test suites)
+- [x] Configure GitHub Actions CD release workflow to build standalone Windows `.exe` installer (InnoSetup / CPack)
+- [x] Bundle pre-trained ONNX models and documentation into release packaging
+- [x] Conduct final system audit and security review
