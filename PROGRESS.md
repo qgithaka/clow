@@ -211,12 +211,12 @@ Integrates the full live trading experience into the desktop terminal, featuring
 
 ### Tasks
 
-- [ ] Implement Tactical AI Radar panel (displays Model 1 confidence, direction, and Model 2 order proposals)
-- [ ] Implement Co-Pilot Mode workflow (renders proposed order parameters with instant [Approve] / [Reject] buttons)
-- [ ] Implement Auto-Pilot Mode workflow (autonomously dispatches pending orders to MT5 when Confidence $> 70\%$)
-- [ ] Implement Bottom Dock Live Position & Order Table (shows tickets, volumes, entry, floating P/L, and Close buttons)
-- [ ] Implement single-click ticket cancellation and position closing via direct MT5 bridge
-- [ ] Write integration tests for Co-Pilot approvals and Auto-Pilot trigger dispatches
+- [x] Implement Tactical AI Radar panel (displays Model 1 confidence, direction, and Model 2 order proposals)
+- [x] Implement Co-Pilot Mode workflow (renders proposed order parameters with instant [Approve] / [Reject] buttons)
+- [x] Implement Auto-Pilot Mode workflow (autonomously dispatches pending orders to MT5 when Confidence $> 70\%$)
+- [x] Implement Bottom Dock Live Position & Order Table (shows tickets, volumes, entry, floating P/L, and Close buttons)
+- [x] Implement single-click ticket cancellation and position closing via direct MT5 bridge
+- [x] Write integration tests for Co-Pilot approvals and Auto-Pilot trigger dispatches
 
 ---
 
