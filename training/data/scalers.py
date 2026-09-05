@@ -4,9 +4,10 @@ Eliminates look-ahead bias and distribution drift by scaling features solely
 using historical sliding windows, with zero future information leakage.
 """
 
-from collections import deque
 import logging
-from typing import Dict, List, Optional, Sequence, Tuple, Union
+from collections import deque
+from collections.abc import Sequence
+
 import numpy as np
 import pandas as pd
 
@@ -20,14 +21,14 @@ class RollingZScoreScaler:
         self,
         window: int = 100,
         min_periods: int = 10,
-        clip_val: Optional[float] = 5.0,
+        clip_val: float | None = 5.0,
         eps: float = 1e-8,
     ) -> None:
         self.window = window
         self.min_periods = min_periods
         self.clip_val = clip_val
         self.eps = eps
-        self._buffers: Dict[str, deque] = {}
+        self._buffers: dict[str, deque] = {}
 
     def transform_series(self, series: pd.Series) -> pd.Series:
         """Transforms a full historical series using causal pandas rolling window."""
@@ -85,14 +86,14 @@ class RollingRobustScaler:
         self,
         window: int = 100,
         min_periods: int = 10,
-        clip_val: Optional[float] = 5.0,
+        clip_val: float | None = 5.0,
         eps: float = 1e-8,
     ) -> None:
         self.window = window
         self.min_periods = min_periods
         self.clip_val = clip_val
         self.eps = eps
-        self._buffers: Dict[str, deque] = {}
+        self._buffers: dict[str, deque] = {}
 
     def transform_series(self, series: pd.Series) -> pd.Series:
         """Transforms a series using rolling median and IQR."""
@@ -154,14 +155,14 @@ class RollingMinMaxScaler:
         self,
         window: int = 100,
         min_periods: int = 10,
-        feature_range: Tuple[float, float] = (-1.0, 1.0),
+        feature_range: tuple[float, float] = (-1.0, 1.0),
         eps: float = 1e-8,
     ) -> None:
         self.window = window
         self.min_periods = min_periods
         self.feature_range = feature_range
         self.eps = eps
-        self._buffers: Dict[str, deque] = {}
+        self._buffers: dict[str, deque] = {}
 
     def transform_series(self, series: pd.Series) -> pd.Series:
         """Transforms a series using rolling min and max."""

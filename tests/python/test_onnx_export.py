@@ -1,8 +1,9 @@
 """Unit tests for ONNX model export, quantization, metadata schema, and numerical parity."""
 
 import json
-from pathlib import Path
 import tempfile
+from pathlib import Path
+
 import numpy as np
 import onnx
 import onnxruntime as ort
@@ -10,12 +11,11 @@ import pytest
 import torch
 
 from training.data.scalers import RollingZScoreScaler
-from training.models.forecaster import ClowForecaster
 from training.models.export_onnx import (
     ONNXExporter,
-    create_model_metadata,
     export_model_package,
 )
+from training.models.forecaster import ClowForecaster
 
 
 @pytest.fixture
@@ -150,7 +150,7 @@ def test_export_model_package_and_metadata(small_forecaster):
         assert len(manifest["onnx_sha256"]) == 64
         assert len(manifest["metadata_sha256"]) == 64
 
-        with open(manifest["metadata_path"], "r") as f:
+        with open(manifest["metadata_path"]) as f:
             meta = json.load(f)
 
         assert meta["model_id"] == "test_forecaster"

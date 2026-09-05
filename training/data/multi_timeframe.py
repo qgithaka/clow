@@ -4,10 +4,9 @@ Aligns macro timeframe features (e.g. H1, H4, D1) to micro execution bars (e.g. 
 with mathematical guarantee of ZERO look-ahead bias and zero data leakage.
 """
 
-from datetime import datetime, timedelta, timezone
 import logging
-from typing import Dict, List, Optional, Union
-import numpy as np
+from datetime import timedelta
+
 import pandas as pd
 
 logger = logging.getLogger("clow.data.multi_timeframe")
@@ -72,8 +71,8 @@ class MultiTimeframeAligner:
         ltf_df: pd.DataFrame,
         htf_df: pd.DataFrame,
         htf_name: str,
-        htf_bar_delta: Optional[timedelta] = None,
-        feature_cols: Optional[List[str]] = None,
+        htf_bar_delta: timedelta | None = None,
+        feature_cols: list[str] | None = None,
     ) -> pd.DataFrame:
         """Aligns HTF features to LTF bars using backward asof merge on bar close timestamps.
         
@@ -134,8 +133,8 @@ class MultiTimeframeAligner:
     def align_multi_timeframes(
         cls,
         ltf_df: pd.DataFrame,
-        htf_dict: Dict[str, pd.DataFrame],
-        feature_cols_dict: Optional[Dict[str, List[str]]] = None,
+        htf_dict: dict[str, pd.DataFrame],
+        feature_cols_dict: dict[str, list[str]] | None = None,
     ) -> pd.DataFrame:
         """Aligns multiple higher timeframe feature sets (e.g. H1, H4, D1) into an LTF dataframe."""
         if ltf_df.empty:

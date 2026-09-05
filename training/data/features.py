@@ -1,8 +1,8 @@
 """Scale-free stationary feature engineering pipeline for Clow."""
 
-from datetime import datetime, timezone
 import logging
-from typing import Optional, Sequence, Tuple
+from collections.abc import Sequence
+
 import numpy as np
 import pandas as pd
 
@@ -249,7 +249,7 @@ class FeatureEngineer:
     def compute_all_features(
         cls,
         df: pd.DataFrame,
-        htf_dict: Optional[Dict[str, pd.DataFrame]] = None,
+        htf_dict: dict[str, pd.DataFrame] | None = None,
     ) -> pd.DataFrame:
         """Executes the complete stationary feature engineering pipeline."""
         if df.empty:

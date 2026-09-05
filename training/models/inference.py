@@ -1,11 +1,12 @@
 """Inference engine and CPU latency benchmark for Clow-Forecaster."""
 
-from dataclasses import dataclass
 import logging
 import time
-from typing import Any, Dict, List, Optional, Sequence, Union
+from dataclasses import dataclass
+
 import numpy as np
 import torch
+
 from training.models.forecaster import ClowForecaster
 
 logger = logging.getLogger("clow.models.inference")
@@ -21,8 +22,8 @@ class NextCandleForecast:
     upper_wick_ratio: float
     lower_wick_ratio: float
     range_to_atr: float
-    quantiles_high: List[float]
-    quantiles_low: List[float]
+    quantiles_high: list[float]
+    quantiles_low: list[float]
     latency_ms: float
 
 
@@ -58,7 +59,7 @@ class ForecasterPredictor:
         model.load_state_dict(state["model_state_dict"])
         return cls(model=model, device=device)
 
-    def predict_next_candle(self, context: Union[np.ndarray, torch.Tensor]) -> NextCandleForecast:
+    def predict_next_candle(self, context: np.ndarray | torch.Tensor) -> NextCandleForecast:
         """Executes single-step real-time inference on a sliding context window.
         
         Args:
@@ -119,7 +120,7 @@ class ForecasterInferenceBenchmark:
         input_dim: int = 16,
         warmup_iters: int = 20,
         benchmark_iters: int = 100,
-    ) -> Dict[str, float]:
+    ) -> dict[str, float]:
         """Runs single-bar sliding window CPU latency benchmark."""
         sample_context = np.random.randn(context_length, input_dim).astype(np.float32)
 
@@ -128,7 +129,7 @@ class ForecasterInferenceBenchmark:
             _ = predictor.predict_next_candle(sample_context)
 
         # 2. Timing loops
-        latencies_ms: List[float] = []
+        latencies_ms: list[float] = []
         for _ in range(benchmark_iters):
             forecast = predictor.predict_next_candle(sample_context)
             latencies_ms.append(forecast.latency_ms)

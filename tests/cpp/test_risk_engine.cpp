@@ -130,7 +130,7 @@ void test_order_state_machine_lifecycle() {
 
     int64_t id = sm.create_order(proposal, 0.50);
     assert(id > 0);
-    const auto* o = sm.get_order(id);
+    [[maybe_unused]] const auto* o = sm.get_order(id);
     assert(o != nullptr);
     assert(o->state == OrderState::Created);
 

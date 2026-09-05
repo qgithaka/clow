@@ -1,7 +1,7 @@
 """Unit tests for strict data health validation."""
 
-import numpy as np
 import pandas as pd
+
 from training.data.chunked_extractor import CanonicalTimeframe
 from training.data.validator import DataValidator
 

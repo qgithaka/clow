@@ -4,12 +4,10 @@ Constructs optimal pending orders (BUY_LIMIT, SELL_LIMIT, dynamic Stop-Loss,
 Take-Profit, and Expiration Horizons) with mathematical expectancy validation.
 """
 
+import logging
 from dataclasses import dataclass
 from enum import Enum
-import logging
-from typing import Any, Dict, List, Optional, Tuple, Union
-import numpy as np
-import pandas as pd
+
 from training.models.inference import NextCandleForecast
 
 logger = logging.getLogger("clow.models.order_policy")
@@ -44,7 +42,7 @@ class TacticalOrderProposal:
     win_probability: float
     expected_value: float
     passed_expectancy_filter: bool
-    rejection_reason: Optional[str] = None
+    rejection_reason: str | None = None
 
 
 class TacticalOrderPolicy:
@@ -104,7 +102,7 @@ class TacticalOrderPolicy:
         current_price: float,
         atr: float,
         symbol: str = "EURUSD",
-        spread: Optional[float] = None,
+        spread: float | None = None,
         volatility_expansion: float = 1.0,
     ) -> TacticalOrderProposal:
         """Constructs an optimal pending order proposal with strict expectancy filtering."""

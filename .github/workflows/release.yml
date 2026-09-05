@@ -1,0 +1,58 @@
+name: Clow Release Packaging
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-release:
+    name: Build Standalone Windows Installer
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up MSVC / Ninja
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python & Export Pre-trained ONNX Models
+        run: |
+          pip install torch onnx onnxruntime numpy pandas
+          python -m training.models.export_onnx --model forecaster --checkpoint checkpoints/best_forecaster.pt --output models/clow_forecaster.onnx --quantize
+          python -m training.models.export_onnx --model policy --checkpoint checkpoints/best_policy.pt --output models/clow_policy.onnx --quantize
+
+      - name: Configure CMake with CPack
+        run: |
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build Clow Terminal Executable
+        run: |
+          cmake --build build --config Release --target clow_terminal
+
+      - name: Run CPack Packaging
+        run: |
+          cd build
+          cpack -C Release -G "ZIP;NSIS"
+
+      - name: Build InnoSetup Installer
+        uses: MinCiencia/innosetup-action@v1
+        with:
+          filepath: packaging/inno_setup.iss
+
+      - name: Upload Release Artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/ClowTerminal-*.zip
+            dist/ClowTerminal-Setup-*.exe
+            models/*.onnx
+            models/model_metadata.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

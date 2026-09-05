@@ -1,14 +1,16 @@
 """Training, validation, early stopping, and checkpointing pipeline for Clow-Forecaster."""
 
-from dataclasses import dataclass, field
 import logging
 import os
+from collections.abc import Sequence
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence, Tuple, Union
+
 import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
+
 from training.models.forecaster import ClowForecaster
 from training.models.losses import CompositeForecasterLoss, QuantileEvaluator
 
@@ -38,8 +40,8 @@ class ForecasterTrainer:
     def __init__(
         self,
         model: ClowForecaster,
-        config: Optional[TrainingConfig] = None,
-        feature_cols: Optional[Sequence[str]] = None,
+        config: TrainingConfig | None = None,
+        feature_cols: Sequence[str] | None = None,
     ) -> None:
         self.config = config or TrainingConfig()
         self.device = torch.device(self.config.device if torch.cuda.is_available() and self.config.device == "cuda" else "cpu")
@@ -65,7 +67,7 @@ class ForecasterTrainer:
 
         self.best_val_loss = float("inf")
         self.best_epoch = 0
-        self.history: Dict[str, List[float]] = {
+        self.history: dict[str, list[float]] = {
             "train_loss": [],
             "val_loss": [],
             "val_dir_acc": [],
@@ -98,7 +100,7 @@ class ForecasterTrainer:
 
         return total_loss / num_batches
 
-    def evaluate(self, val_loader: DataLoader) -> Tuple[float, float, Dict[str, float]]:
+    def evaluate(self, val_loader: DataLoader) -> tuple[float, float, dict[str, float]]:
         """Evaluates model performance on validation / test set."""
         self.model.eval()
         total_loss = 0.0
@@ -106,8 +108,8 @@ class ForecasterTrainer:
         if num_batches == 0:
             return 0.0, 0.0, {}
 
-        all_dir_probs: List[np.ndarray] = []
-        all_dir_targets: List[np.ndarray] = []
+        all_dir_probs: list[np.ndarray] = []
+        all_dir_targets: list[np.ndarray] = []
 
         with torch.no_grad():
             for batch in val_loader:
@@ -132,7 +134,7 @@ class ForecasterTrainer:
         }
         return mean_loss, dir_acc, metrics
 
-    def fit(self, train_loader: DataLoader, val_loader: DataLoader) -> Dict[str, List[float]]:
+    def fit(self, train_loader: DataLoader, val_loader: DataLoader) -> dict[str, list[float]]:
         """Runs complete training loop with validation, learning rate scheduling, and early stopping."""
         patience_counter = 0
         os.makedirs(self.config.checkpoint_dir, exist_ok=True)

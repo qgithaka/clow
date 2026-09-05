@@ -1,6 +1,7 @@
 """Unit tests for ClowForecaster neural foundation model architecture."""
 
 import torch
+
 from training.models.forecaster import ClowForecaster
 
 

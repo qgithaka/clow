@@ -1,9 +1,10 @@
 """Comprehensive synthetic dirty/clean dataset stress test suite."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
+
 import numpy as np
 import pandas as pd
-import pytest
+
 from training.data.chunked_extractor import CanonicalTimeframe
 from training.data.cleaner import DataCleaner
 from training.data.health_report import HealthReportGenerator
@@ -13,29 +14,29 @@ from training.data.validator import DataValidator
 
 def generate_synthetic_dirty_dataset() -> pd.DataFrame:
     """Generates a dataset with 8 distinct classes of deliberate corruption."""
-    base_time = datetime(2023, 5, 1, 0, 0, tzinfo=timezone.utc)
+    base_time = datetime(2023, 5, 1, 0, 0, tzinfo=UTC)
     rows = []
 
     for i in range(100):
         t = base_time + timedelta(minutes=i * 5)
         # 1. Normal row
-        o, h, l, c = 1.0850, 1.0860, 1.0840, 1.0855
+        op, hi, lo, cl = 1.0850, 1.0860, 1.0840, 1.0855
         spread = 1.2
         vol = 100.0
 
         # Inject Corruptions:
         if i == 10:
             # Corruption 1: Negative price
-            o, h, l, c = -1.0850, 1.0860, 1.0840, 1.0855
+            op, hi, lo, cl = -1.0850, 1.0860, 1.0840, 1.0855
         elif i == 20:
             # Corruption 2: High < Low
-            o, h, l, c = 1.0850, 1.0830, 1.0870, 1.0855
+            op, hi, lo, cl = 1.0850, 1.0830, 1.0870, 1.0855
         elif i == 30:
             # Corruption 3: Negative Spread
             spread = -2.5
         elif i == 40:
             # Corruption 4: NaN Close
-            c = np.nan
+            cl = np.nan
         elif i == 50:
             # Corruption 5: Duplicate timestamp
             t = base_time + timedelta(minutes=49 * 5)
@@ -48,10 +49,10 @@ def generate_synthetic_dirty_dataset() -> pd.DataFrame:
 
         rows.append({
             "timestamp_utc": t,
-            "open": o,
-            "high": h,
-            "low": l,
-            "close": c,
+            "open": op,
+            "high": hi,
+            "low": lo,
+            "close": cl,
             "volume": vol,
             "tick_volume": vol * 2,
             "spread": spread,

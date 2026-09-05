@@ -201,10 +201,10 @@ Implements hardware-accelerated 60+ FPS candlestick charting in C++ Qt (OpenGL /
 
 ---
 
-## M10 – Tactical AI Radar & Co-Pilot / Auto-Pilot Dashboard 🔄 IN PROGRESS
+## M10 – Tactical AI Radar & Co-Pilot / Auto-Pilot Dashboard ✅ COMPLETE
 
 **Branch:** `feat/m10-trading-dashboard`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Integrates the full live trading experience into the desktop terminal, featuring the Tactical AI Radar panel, Co-Pilot manual order approval, Auto-Pilot autonomous trigger loops, and the live MT5 positions/orders dock.
@@ -220,18 +220,18 @@ Integrates the full live trading experience into the desktop terminal, featuring
 
 ---
 
-## M11 – End-to-End Simulation, Packaging & Standalone Release
+## M11 – End-to-End Simulation, Packaging & Standalone Release 🔄 IN PROGRESS
 
 **Branch:** `feat/m11-release-packaging`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Performs full end-to-end integration and paper trading simulation, configures automated GitHub Actions CI/CD workflows, and packages the complete Clow desktop terminal with pre-trained ONNX models into a standalone Windows installer.
 
 ### Tasks
 
-- [ ] Run full end-to-end paper simulation against live MT5 tick streams across multiple pairs
-- [ ] Configure GitHub Actions CI workflow (linting, Python tests, C++ compilation, test suites)
-- [ ] Configure GitHub Actions CD release workflow to build standalone Windows `.exe` installer (InnoSetup / CPack)
-- [ ] Bundle pre-trained ONNX models and documentation into release packaging
-- [ ] Conduct final system audit and security review
+- [x] Run full end-to-end paper simulation against live MT5 tick streams across multiple pairs
+- [x] Configure GitHub Actions CI workflow (linting, Python tests, C++ compilation, test suites)
+- [x] Configure GitHub Actions CD release workflow to build standalone Windows `.exe` installer (InnoSetup / CPack)
+- [x] Bundle pre-trained ONNX models and documentation into release packaging
+- [x] Conduct final system audit and security review

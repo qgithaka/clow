@@ -1,9 +1,9 @@
 """Unit tests for Parquet storage and DuckDB queries."""
 
-from datetime import datetime, timezone
 from pathlib import Path
+
 import pandas as pd
-import pytest
+
 from training.data.storage import ParquetStorageManager
 
 

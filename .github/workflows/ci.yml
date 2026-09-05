@@ -1,0 +1,64 @@
+name: Clow CI Engine
+
+on:
+  push:
+    branches: [ production, staging, development, 'feat/**' ]
+  pull_request:
+    branches: [ production, staging, development ]
+
+jobs:
+  python-ci:
+    name: Python Linting & Test Suite
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+          pip install statsmodels
+
+      - name: Run Ruff Linter
+        run: |
+          ruff check training/ tests/python/
+
+      - name: Run Python Pytest Suite
+        run: |
+          python -m pytest tests/python -v
+
+  cpp-ci:
+    name: C++20 Build & Test Suite
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up MSVC / Ninja
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Configure CMake
+        run: |
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build Clow C++ Core & Tests
+        run: |
+          cmake --build build --config Release
+
+      - name: Execute C++ Test Suite
+        run: |
+          ctest --test-dir build -C Release --output-on-failure
+          if (Test-Path ./build/Release/clow_cpp_tests.exe) {
+            ./build/Release/clow_cpp_tests.exe
+          } elseif (Test-Path ./build/clow_cpp_tests.exe) {
+            ./build/clow_cpp_tests.exe
+          }

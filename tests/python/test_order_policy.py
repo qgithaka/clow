@@ -1,9 +1,7 @@
 """Unit tests for TacticalOrderPolicy, dynamic expiration, and expectancy gating."""
 
-import numpy as np
-import pytest
 from training.models.inference import NextCandleForecast
-from training.models.order_policy import TacticalOrderPolicy, OrderType, TacticalOrderProposal
+from training.models.order_policy import OrderType, TacticalOrderPolicy
 
 
 def test_buy_limit_order_generation() -> None:

@@ -1,12 +1,13 @@
 """Strict data health validation engine for market datasets."""
 
-from dataclasses import dataclass, field
-from datetime import datetime, timedelta, timezone
 import logging
-from typing import Any, Optional
-import numpy as np
+from dataclasses import dataclass
+from datetime import timedelta
+from typing import Any
+
 import pandas as pd
 from pydantic import BaseModel, Field
+
 from training.data.chunked_extractor import CanonicalTimeframe
 from training.data.cleaner import DataCleaner
 

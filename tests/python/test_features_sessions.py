@@ -1,7 +1,7 @@
 """Unit tests for institutional Forex session timing features."""
 
-import numpy as np
 import pandas as pd
+
 from training.data.features import FeatureEngineer
 
 

@@ -1,8 +1,9 @@
 """Native MetaTrader 5 Windows IPC Broker Connector (No EA required)."""
 
-from datetime import datetime, timezone
 import logging
-from typing import Any, Optional
+from datetime import UTC, datetime
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger("clow.data.mt5")
@@ -49,7 +50,7 @@ class SymbolMetadata(BaseModel):
 class LiveTick(BaseModel):
     """Real-time market tick quote."""
     symbol: str
-    timestamp_utc: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    timestamp_utc: datetime = Field(default_factory=lambda: datetime.now(UTC))
     bid: float
     ask: float
     last: float = 0.0
@@ -108,7 +109,7 @@ class MT5BrokerConnector:
             mt5.shutdown()
         self._is_initialized = False
 
-    def get_account_info(self) -> Optional[BrokerAccount]:
+    def get_account_info(self) -> BrokerAccount | None:
         """Retrieves active MT5 account information."""
         if not self._is_initialized or not HAS_MT5:
             return None
@@ -163,7 +164,7 @@ class MT5BrokerConnector:
             )
         return catalog
 
-    def get_live_tick(self, symbol: str) -> Optional[LiveTick]:
+    def get_live_tick(self, symbol: str) -> LiveTick | None:
         """Returns latest live tick quote for symbol."""
         if not self._is_initialized or not HAS_MT5:
             return None
@@ -175,11 +176,11 @@ class MT5BrokerConnector:
         bid = float(getattr(tick, "bid", 0.0))
         ask = float(getattr(tick, "ask", 0.0))
         spread_pip = round((ask - bid) * (100.0 if "JPY" in symbol.upper() else 10000.0), 2)
-        t_sec = float(getattr(tick, "time", datetime.now(timezone.utc).timestamp()))
+        t_sec = float(getattr(tick, "time", datetime.now(UTC).timestamp()))
 
         return LiveTick(
             symbol=symbol,
-            timestamp_utc=datetime.fromtimestamp(t_sec, tz=timezone.utc),
+            timestamp_utc=datetime.fromtimestamp(t_sec, tz=UTC),
             bid=bid,
             ask=ask,
             last=float(getattr(tick, "last", 0.0)),

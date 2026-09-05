@@ -107,3 +107,21 @@ if(TEST_CPP_SOURCES)
     )
     add_test(NAME ClowCppTests COMMAND clow_cpp_tests)
 endif()
+
+# Packaging and Installation (CPack / InnoSetup)
+install(TARGETS clow_terminal RUNTIME DESTINATION bin)
+install(DIRECTORY config/ DESTINATION config)
+install(DIRECTORY models/ DESTINATION models OPTIONAL)
+
+set(CPACK_PACKAGE_NAME "ClowTerminal")
+set(CPACK_PACKAGE_VENDOR "Clow Quantitative Systems")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Clow: Predictive AI Trading Terminal & Monorepo")
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(CPACK_GENERATOR "ZIP;NSIS")
+set(CPACK_NSIS_DISPLAY_NAME "Clow Trading Terminal")
+set(CPACK_PACKAGE_EXECUTABLES "clow_terminal;Clow Terminal")
+
+include(CPack)
+

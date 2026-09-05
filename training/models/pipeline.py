@@ -1,13 +1,13 @@
 """End-to-End Pipeline connecting Model 1 Forecaster to Model 2 Tactical Order Policy."""
 
 import logging
-from typing import Dict, List, Optional, Tuple, Union
+
 import numpy as np
 import pandas as pd
+
 from training.data.features import FeatureEngineer
-from training.models.inference import ForecasterPredictor, NextCandleForecast
-from training.models.order_policy import TacticalOrderPolicy, TacticalOrderProposal, OrderType
-from training.models.triple_barrier import TripleBarrierEngine
+from training.models.inference import ForecasterPredictor
+from training.models.order_policy import TacticalOrderPolicy, TacticalOrderProposal
 
 logger = logging.getLogger("clow.models.pipeline")
 
@@ -18,9 +18,9 @@ class TacticalForecasterPipeline:
     def __init__(
         self,
         predictor: ForecasterPredictor,
-        policy: Optional[TacticalOrderPolicy] = None,
+        policy: TacticalOrderPolicy | None = None,
         context_length: int = 64,
-        feature_cols: Optional[List[str]] = None,
+        feature_cols: list[str] | None = None,
     ) -> None:
         self.predictor = predictor
         self.policy = policy or TacticalOrderPolicy()

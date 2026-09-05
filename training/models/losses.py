@@ -4,11 +4,11 @@ Implements multi-quantile pinball loss, directional binary cross-entropy,
 anatomy geometry loss, and quantile calibration evaluation metrics.
 """
 
-from typing import Dict, List, Optional, Sequence, Tuple, Union
+from collections.abc import Sequence
+
 import numpy as np
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 class PinballLoss(nn.Module):
@@ -84,9 +84,9 @@ class CompositeForecasterLoss(nn.Module):
 
     def forward(
         self,
-        model_outputs: Dict[str, torch.Tensor],
-        batch: Dict[str, torch.Tensor],
-    ) -> Dict[str, torch.Tensor]:
+        model_outputs: dict[str, torch.Tensor],
+        batch: dict[str, torch.Tensor],
+    ) -> dict[str, torch.Tensor]:
         """Calculates multi-objective losses.
         
         Args:

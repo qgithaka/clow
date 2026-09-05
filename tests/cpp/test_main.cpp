@@ -39,6 +39,9 @@ void test_autopilot_execution_loop();
 void test_positions_table_mark_to_market();
 void test_execution_controller_lifecycle();
 
+// Forward declarations of M11 Simulation & Release test functions
+void test_end_to_end_paper_simulation();
+
 void test_config_defaults() {
     auto cfg = clow::core::ClowConfig::load_defaults();
     assert(cfg.mt5().server == "MetaQuotes-Demo");
@@ -95,6 +98,9 @@ int main() {
     test_autopilot_execution_loop();
     test_positions_table_mark_to_market();
     test_execution_controller_lifecycle();
+
+    // M11 End-to-End Simulation tests
+    test_end_to_end_paper_simulation();
 
     std::cout << "All C++ unit tests passed successfully!" << std::endl;
     return 0;

@@ -2,11 +2,13 @@
 
 import os
 import shutil
+
 import numpy as np
 import pytest
 import torch
+
 from training.models.forecaster import ClowForecaster
-from training.models.inference import ForecasterPredictor, ForecasterInferenceBenchmark
+from training.models.inference import ForecasterInferenceBenchmark, ForecasterPredictor
 from training.models.trainer import ForecasterTrainer, TrainingConfig
 
 

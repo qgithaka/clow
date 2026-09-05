@@ -1,6 +1,7 @@
 """Unit tests for Clow CLI."""
 
 from typer.testing import CliRunner
+
 from training.cli import app
 
 runner = CliRunner()

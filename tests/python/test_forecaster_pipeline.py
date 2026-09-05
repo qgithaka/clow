@@ -3,11 +3,11 @@
 import numpy as np
 import pandas as pd
 import pytest
-import torch
+
 from training.models.dataset import TimeSeriesSlidingWindowDataset
 from training.models.forecaster import ClowForecaster
 from training.models.inference import ForecasterPredictor
-from training.models.order_policy import TacticalOrderPolicy, OrderType
+from training.models.order_policy import OrderType, TacticalOrderPolicy
 from training.models.pipeline import TacticalForecasterPipeline
 
 

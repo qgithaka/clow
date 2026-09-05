@@ -4,10 +4,10 @@ Implements multi-task transformer backbone predicting candle anatomy,
 directional probability, and probabilistic quantile excursions for upcoming candles.
 """
 
-from typing import Dict, List, Optional, Sequence, Tuple
+from collections.abc import Sequence
+
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 class PositionalEncoding(nn.Module):
@@ -98,7 +98,7 @@ class ClowForecaster(nn.Module):
             nn.Softplus(),  # Excursions are strictly non-negative
         )
 
-    def forward(self, context: torch.Tensor) -> Dict[str, torch.Tensor]:
+    def forward(self, context: torch.Tensor) -> dict[str, torch.Tensor]:
         """Forward pass.
         
         Args:

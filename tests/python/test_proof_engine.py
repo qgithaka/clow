@@ -1,11 +1,10 @@
 """Unit tests for Statistical Proof Engine, DSR, Monte Carlo, and stress testing."""
 
 import numpy as np
-import pytest
 import torch
-from torch.utils.data import DataLoader, TensorDataset
+from torch.utils.data import DataLoader
+
 from training.models.forecaster import ClowForecaster
-from training.validation.cross_validation import PurgedWalkForwardCV
 from training.validation.monte_carlo import MonteCarloSimulator
 from training.validation.permutation import PermutationTester
 from training.validation.proof_engine import StatisticalProofEngine

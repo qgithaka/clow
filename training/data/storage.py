@@ -1,13 +1,11 @@
 """Immutable Parquet dataset storage and DuckDB analytical query layer."""
 
-from dataclasses import dataclass
-from datetime import datetime, timezone
 import hashlib
-import json
 import logging
-from pathlib import Path
-from typing import Any, Optional
 import uuid
+from datetime import UTC, datetime
+from pathlib import Path
+
 import duckdb
 import pandas as pd
 import pyarrow as pa
@@ -26,7 +24,7 @@ class DatasetMetadata(BaseModel):
     end_time_utc: datetime
     row_count: int
     checksum_sha256: str
-    created_at_utc: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at_utc: datetime = Field(default_factory=lambda: datetime.now(UTC))
     file_path: str
     feature_version: int = 1
 
@@ -52,7 +50,7 @@ class ParquetStorageManager:
         df: pd.DataFrame,
         symbol: str,
         timeframe: str,
-        custom_name: Optional[str] = None,
+        custom_name: str | None = None,
     ) -> DatasetMetadata:
         """Saves a cleaned DataFrame to compressed immutable Parquet format."""
         if df.empty:

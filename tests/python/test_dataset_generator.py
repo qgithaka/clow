@@ -3,8 +3,8 @@
 import numpy as np
 import pandas as pd
 import pytest
-import torch
 from torch.utils.data import DataLoader
+
 from training.data.features import FeatureEngineer
 from training.models.dataset import TimeSeriesSlidingWindowDataset
 

@@ -1,7 +1,7 @@
 """Unit tests for dataset health report generation."""
 
-from datetime import datetime, timezone
 import pandas as pd
+
 from training.data.chunked_extractor import CanonicalTimeframe
 from training.data.health_report import HealthReportGenerator
 
