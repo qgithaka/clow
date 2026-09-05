@@ -57,7 +57,7 @@ Raw price numbers drift over time and cannot be fed to deep neural networks acro
 
 ### Tasks
 
-- [ ] Implement scale-free candle anatomy features (Body Ratio, Upper/Lower Wick Ratios, Range-to-ATR)
+- [x] Implement scale-free candle anatomy features (Body Ratio, Upper/Lower Wick Ratios, Range-to-ATR)
 - [ ] Implement normalized momentum indicators (Rolling Z-score deviations from EMAs, stationary RSI, MACD ratios)
 - [ ] Implement volatility regime features (Normalized ATR, rolling Bollinger Band width, volatility expansion ratios)
 - [ ] Implement institutional Forex session features (Asian, London, NY Overlap, London Close session timing masks)
