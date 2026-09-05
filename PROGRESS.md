@@ -47,10 +47,10 @@ Connects natively to MetaTrader 5 via local Windows IPC / DLL bindings without r
 
 ---
 
-## M02 – Scale-Free Stationary Feature Pipeline 🔄 IN PROGRESS
+## M02 – Scale-Free Stationary Feature Pipeline ✅ COMPLETE
 
 **Branch:** `feat/m02-feature-pipeline`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Raw price numbers drift over time and cannot be fed to deep neural networks across multiple years or currency pairs. This milestone builds the scale-free, asset-agnostic feature engineering pipeline that transforms raw OHLCV bars into stationary mathematical geometry, volatility ratios, and multi-timeframe context.
@@ -67,23 +67,23 @@ Raw price numbers drift over time and cannot be fed to deep neural networks acro
 
 ---
 
-## M03 – Clow-Forecaster Training Lab (Next-Candle Predictor)
+## M03 – Clow-Forecaster Training Lab (Next-Candle Predictor) 🔄 IN PROGRESS
 
 **Branch:** `feat/m03-forecaster-lab`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Implements the deep time-series foundation model pipeline (fine-tuning Chronos / TSFM) to predict the anatomy, directional probability, and probabilistic quantile boundaries (10th, 50th, 90th percentiles) of upcoming candles.
 
 ### Tasks
 
-- [ ] Implement time-series sliding window dataset generator for Chronos fine-tuning
-- [ ] Build Chronos fine-tuning pipeline with PyTorch, Hugging Face Transformers, and AutoGluon
-- [ ] Implement quantile loss / pinball loss evaluation for predictive high/low boundaries
-- [ ] Implement directional probability classifier ($P_{\text{Bull}}$ vs $P_{\text{Bear}}$)
-- [ ] Build training, validation, and evaluation loops with early stopping and checkpointing
-- [ ] Implement sliding window inference benchmark for CPU latency measurement
-- [ ] Write unit tests for model initialization, training step, and quantile generation
+- [x] Implement time-series sliding window dataset generator for Chronos fine-tuning
+- [x] Build Chronos fine-tuning pipeline with PyTorch, Hugging Face Transformers, and AutoGluon
+- [x] Implement quantile loss / pinball loss evaluation for predictive high/low boundaries
+- [x] Implement directional probability classifier ($P_{\text{Bull}}$ vs $P_{\text{Bear}}$)
+- [x] Build training, validation, and evaluation loops with early stopping and checkpointing
+- [x] Implement sliding window inference benchmark for CPU latency measurement
+- [x] Write unit tests for model initialization, training step, and quantile generation
 
 ---
 
