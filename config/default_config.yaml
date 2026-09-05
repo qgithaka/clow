@@ -1,0 +1,43 @@
+# Clow Default Configuration
+environment: development
+
+mt5:
+  server: "MetaQuotes-Demo"
+  login: 0
+  password: ""
+  timeout_seconds: 30
+
+data:
+  storage_dir: "data/storage"
+  parquet_dir: "data/parquet"
+  chunk_years: 1
+  canonical_timeframes:
+    - M1
+    - M5
+    - M15
+    - H1
+    - H4
+    - D1
+
+models:
+  foundation_model: "amazon/chronos-t5-small"
+  context_length: 64
+  prediction_length: 1
+  quantile_levels: [0.1, 0.5, 0.9]
+  batch_size: 32
+  learning_rate: 0.0001
+  max_epochs: 5
+  device: "auto"
+
+risk:
+  max_account_risk_pct: 1.0
+  max_daily_drawdown_pct: 4.0
+  max_open_trades: 3
+  max_spread_pips: 2.5
+  min_confidence_threshold: 0.65
+  default_expiration_bars: 3
+
+logging:
+  level: "INFO"
+  json_format: false
+  log_dir: "logs"
