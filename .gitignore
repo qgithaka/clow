@@ -37,8 +37,8 @@ logs/
 *.duckdb.wal
 
 # Large Data & Datasets
-data/
-storage/
+/data/
+/storage/
 *.parquet
 
 # IDEs

@@ -10,7 +10,7 @@ All permanent rules (branching strategy, commit format, PR generation, how to ma
 ## M00 – Monorepo Foundation & Build Systems ✅ COMPLETE
 
 **Branch:** `feat/m00-foundation`  
-**Status:** Completed – ready for PR merge into `development`
+**Status:** Merged into `development`
 
 ### Context
 Clow is structured as a unified monorepo containing both the Python AI Training Lab (`training/`) and the C++ Qt Desktop Terminal (`src/`). This milestone establishes the complete directory scaffold, build systems, configuration management, logging, and automated test runners.
@@ -27,23 +27,23 @@ Clow is structured as a unified monorepo containing both the Python AI Training 
 
 ---
 
-## M01 – MT5 Windows IPC Bridge & Chunked Data Engine
+## M01 – MT5 Windows IPC Bridge & Chunked Data Engine ✅ COMPLETE
 
 **Branch:** `feat/m01-data-engine`  
-**Status:** Planned
+**Status:** Completed – ready for PR merge into `development`
 
 ### Context
 Connects natively to MetaTrader 5 via local Windows IPC / DLL bindings without requiring any Expert Advisors (EAs). Implements chunked time-window pagination (e.g., 1-year slices) to pull decades of historical OHLCV data without hitting broker server row limits, validates data integrity, and stores datasets in immutable Parquet format queried via DuckDB.
 
 ### Tasks
 
-- [ ] Implement native Windows IPC broker connector to MT5 (account inspection, symbol catalogs, tick quotes)
-- [ ] Build chunked historical time-window paginator to extract multi-year OHLCV data in slices
-- [ ] Implement boundary deduplication, chronological UTC sorting, and weekend market gap handling
-- [ ] Build strict data health validator (detects negative prices, bad spreads, missing intervals, disordered timestamps)
-- [ ] Implement immutable Parquet storage and DuckDB analytical query layer
-- [ ] Generate comprehensive data health reports for extracted datasets
-- [ ] Write unit tests using synthetic clean and corrupt datasets
+- [x] Implement native Windows IPC broker connector to MT5 (account inspection, symbol catalogs, tick quotes)
+- [x] Build chunked historical time-window paginator to extract multi-year OHLCV data in slices
+- [x] Implement boundary deduplication, chronological UTC sorting, and weekend market gap handling
+- [x] Build strict data health validator (detects negative prices, bad spreads, missing intervals, disordered timestamps)
+- [x] Implement immutable Parquet storage and DuckDB analytical query layer
+- [x] Generate comprehensive data health reports for extracted datasets
+- [x] Write unit tests using synthetic clean and corrupt datasets
 
 ---
 
