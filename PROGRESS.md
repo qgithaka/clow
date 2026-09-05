@@ -116,7 +116,7 @@ Subjects all models and strategies to institutional validation standards before 
 
 ### Tasks
 
-- [ ] Implement Purged Walk-Forward Cross-Validation with configurable embargo periods
+- [x] Implement Purged Walk-Forward Cross-Validation with configurable embargo periods
 - [ ] Implement Synthetic Noise Permutation Test (proves models collapse to 50% coin-flip on shuffled noise)
 - [ ] Implement Broker Friction & Spread Shock Simulator (tests profitability under 3x widened spreads and 150ms slippage)
 - [ ] Implement Monte Carlo 1,000-run trade sequence simulation for worst-case drawdown estimation
