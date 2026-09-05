@@ -144,10 +144,10 @@ Converts trained PyTorch models into optimized, lightweight `.onnx` binaries and
 
 ---
 
-## M07 – Sovereign Risk Manager & Order State Machine 🔄 IN PROGRESS
+## M07 – Sovereign Risk Manager & Order State Machine ✅ COMPLETE
 
 **Branch:** `feat/m07-risk-engine`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Implements the sovereign risk governance layer and the native C++ order state machine that controls trade sizing, enforces daily loss limits, manages pending order lifecycles, and executes panic kill-switch commands.
@@ -163,10 +163,10 @@ Implements the sovereign risk governance layer and the native C++ order state ma
 
 ---
 
-## M08 – C++ Qt Modern Desktop Terminal & Navigation
+## M08 – C++ Qt Modern Desktop Terminal & Navigation 🔄 IN PROGRESS
 
 **Branch:** `feat/m08-desktop-ui`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Builds the core modern dark-mode desktop terminal in C++ Qt 6, featuring responsive multi-viewport layouts, broker profile switching, account status telemetry, and configuration control panels.
