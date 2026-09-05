@@ -87,10 +87,10 @@ Implements the deep time-series foundation model pipeline (fine-tuning Chronos /
 
 ---
 
-## M04 – Clow-Tactical Order Policy Lab 🔄 IN PROGRESS
+## M04 – Clow-Tactical Order Policy Lab ✅ COMPLETE
 
 **Branch:** `feat/m04-tactical-order-lab`  
-**Status:** Active – agent is working here
+**Status:** Merged into `development`
 
 ### Context
 Model 2 takes the candle forecast and historical market context to construct optimal pending orders (`BUY_LIMIT`, `SELL_LIMIT`, entry level, dynamic stop-loss, take-profit, and expiration horizon) using asymmetric Triple-Barrier labeling.
@@ -106,10 +106,10 @@ Model 2 takes the candle forecast and historical market context to construct opt
 
 ---
 
-## M05 – Zero-Leakage Validation & Statistical Proof Engine
+## M05 – Zero-Leakage Validation & Statistical Proof Engine 🔄 IN PROGRESS
 
 **Branch:** `feat/m05-proof-engine`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Subjects all models and strategies to institutional validation standards before any deployment is permitted. Prevents curve-fitting through purged walk-forward cross-validation, synthetic noise permutation tests, and spread/slippage stress testing.
