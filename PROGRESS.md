@@ -192,12 +192,12 @@ Implements hardware-accelerated 60+ FPS candlestick charting in C++ Qt (OpenGL /
 
 ### Tasks
 
-- [ ] Implement high-performance Candlestick Chart renderer with smooth zoom, pan, and crosshair tools
-- [ ] Implement real-time bar updates from MT5 tick stream without UI thread stutter
-- [ ] Implement **Ghost-Candle Predictive Overlay** rendering forecasted upcoming bar geometry
-- [ ] Implement Quantile Confidence Corridor rendering (10th–90th percentile boundary bands)
-- [ ] Implement interactive Pending Order level lines (Entry, SL, TP) directly on the chart canvas
-- [ ] Write chart rendering benchmark tests verifying 60+ FPS performance under rapid tick updates
+- [x] Implement high-performance Candlestick Chart renderer with smooth zoom, pan, and crosshair tools
+- [x] Implement real-time bar updates from MT5 tick stream without UI thread stutter
+- [x] Implement **Ghost-Candle Predictive Overlay** rendering forecasted upcoming bar geometry
+- [x] Implement Quantile Confidence Corridor rendering (10th–90th percentile boundary bands)
+- [x] Implement interactive Pending Order level lines (Entry, SL, TP) directly on the chart canvas
+- [x] Write chart rendering benchmark tests verifying 60+ FPS performance under rapid tick updates
 
 ---
 
