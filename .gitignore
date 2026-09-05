@@ -1,0 +1,49 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C / C++ Build artifacts
+build/
+cmake-build-*/
+out/
+*.obj
+*.exe
+*.dll
+*.lib
+*.so
+*.dylib
+*.a
+.cache/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+*.gcda
+*.gcno
+
+# Environments & Secrets
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Logs & Temporary databases
+logs/
+*.log
+*.duckdb
+*.duckdb.wal
+
+# Large Data & Datasets
+data/
+storage/
+*.parquet
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.user
+*.suo
