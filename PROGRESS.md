@@ -30,7 +30,7 @@ Clow is structured as a unified monorepo containing both the Python AI Training 
 ## M01 – MT5 Windows IPC Bridge & Chunked Data Engine ✅ COMPLETE
 
 **Branch:** `feat/m01-data-engine`  
-**Status:** Completed – ready for PR merge into `development`
+**Status:** Merged into `development`
 
 ### Context
 Connects natively to MetaTrader 5 via local Windows IPC / DLL bindings without requiring any Expert Advisors (EAs). Implements chunked time-window pagination (e.g., 1-year slices) to pull decades of historical OHLCV data without hitting broker server row limits, validates data integrity, and stores datasets in immutable Parquet format queried via DuckDB.
@@ -47,10 +47,10 @@ Connects natively to MetaTrader 5 via local Windows IPC / DLL bindings without r
 
 ---
 
-## M02 – Scale-Free Stationary Feature Pipeline
+## M02 – Scale-Free Stationary Feature Pipeline 🔄 IN PROGRESS
 
 **Branch:** `feat/m02-feature-pipeline`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Raw price numbers drift over time and cannot be fed to deep neural networks across multiple years or currency pairs. This milestone builds the scale-free, asset-agnostic feature engineering pipeline that transforms raw OHLCV bars into stationary mathematical geometry, volatility ratios, and multi-timeframe context.
