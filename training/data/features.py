@@ -145,3 +145,58 @@ class FeatureEngineer:
         res["macd_hist_pct"] = res["macd_dist_pct"] - res["macd_signal_pct"]
 
         return res
+
+    @classmethod
+    def compute_volatility_features(
+        cls,
+        df: pd.DataFrame,
+        bb_period: int = 20,
+        bb_num_std: float = 2.0,
+        atr_short: int = 7,
+        atr_medium: int = 14,
+        atr_long: int = 50,
+    ) -> pd.DataFrame:
+        """Computes scale-free volatility regime features (Normalized ATR, Bollinger Band width, expansion ratios)."""
+        if df.empty:
+            return pd.DataFrame()
+
+        res = df.copy()
+        eps = 1e-8
+        close = res["close"]
+        high = res["high"]
+        low = res["low"]
+
+        # 1. Multi-Period ATRs
+        atr_s = cls.calculate_atr(res, period=atr_short)
+        atr_m = cls.calculate_atr(res, period=atr_medium)
+        atr_l = cls.calculate_atr(res, period=atr_long)
+
+        res[f"atr_{atr_short}"] = atr_s
+        res[f"atr_{atr_medium}"] = atr_m
+        res[f"atr_{atr_long}"] = atr_l
+
+        # 2. Normalized ATR Percentages and Ratios
+        res["atr_pct"] = atr_m / (close + eps)
+        res["volatility_expansion_ratio"] = atr_s / (atr_l + eps)
+        res["range_expansion_ratio"] = (high - low) / (atr_m + eps)
+
+        # 3. Bollinger Bands & Normalized Bandwidth
+        bb_mid = close.rolling(window=bb_period, min_periods=1).mean()
+        bb_std = close.rolling(window=bb_period, min_periods=1).std().fillna(0.0)
+        bb_upper = bb_mid + bb_num_std * bb_std
+        bb_lower = bb_mid - bb_num_std * bb_std
+
+        res["bb_upper"] = bb_upper
+        res["bb_lower"] = bb_lower
+        res["bb_mid"] = bb_mid
+        res["bb_width_pct"] = (bb_upper - bb_lower) / (bb_mid + eps)
+        res["bb_width_atr"] = (bb_upper - bb_lower) / (atr_m + eps)
+        res["bb_pct_b"] = (close - bb_lower) / (bb_upper - bb_lower + eps)
+
+        # 4. Keltner Channels & Volatility Squeeze State
+        keltner_mid = close.ewm(span=bb_period, adjust=False).mean()
+        keltner_upper = keltner_mid + 1.5 * atr_m
+        keltner_lower = keltner_mid - 1.5 * atr_m
+        res["is_volatility_squeeze"] = ((bb_upper < keltner_upper) & (bb_lower > keltner_lower)).astype(float)
+
+        return res
