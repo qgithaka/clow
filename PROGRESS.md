@@ -10,7 +10,7 @@ All permanent rules (branching strategy, commit format, PR generation, how to ma
 ## M00 – Monorepo Foundation & Build Systems ✅ COMPLETE
 
 **Branch:** `feat/m00-foundation`  
-**Status:** Completed – ready for PR merge into `development`
+**Status:** Merged into `development`
 
 ### Context
 Clow is structured as a unified monorepo containing both the Python AI Training Lab (`training/`) and the C++ Qt Desktop Terminal (`src/`). This milestone establishes the complete directory scaffold, build systems, configuration management, logging, and automated test runners.
@@ -27,10 +27,10 @@ Clow is structured as a unified monorepo containing both the Python AI Training 
 
 ---
 
-## M01 – MT5 Windows IPC Bridge & Chunked Data Engine
+## M01 – MT5 Windows IPC Bridge & Chunked Data Engine 🔄 IN PROGRESS
 
 **Branch:** `feat/m01-data-engine`  
-**Status:** Planned
+**Status:** Active – agent is working here
 
 ### Context
 Connects natively to MetaTrader 5 via local Windows IPC / DLL bindings without requiring any Expert Advisors (EAs). Implements chunked time-window pagination (e.g., 1-year slices) to pull decades of historical OHLCV data without hitting broker server row limits, validates data integrity, and stores datasets in immutable Parquet format queried via DuckDB.
