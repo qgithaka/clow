@@ -135,8 +135,8 @@ Converts trained PyTorch models into optimized, lightweight `.onnx` binaries and
 
 ### Tasks
 
-- [ ] Implement PyTorch-to-ONNX conversion and quantization (FP16 / INT8) for Model 1 and Model 2
-- [ ] Package model metadata, input/output tensor schemas, and feature normalization constants into `model_metadata.json`
+- [x] Implement PyTorch-to-ONNX conversion and quantization (FP16 / INT8) for Model 1 and Model 2
+- [x] Package model metadata, input/output tensor schemas, and feature normalization constants into `model_metadata.json`
 - [ ] Implement native C++ ONNX Runtime wrapper in `src/ai/onnx_engine.cpp`
 - [ ] Implement C++ sliding window buffer and SIMD-accelerated feature normalizer
 - [ ] Benchmark and optimize end-to-end C++ inference latency to $< 5\text{ms}$ on CPU
