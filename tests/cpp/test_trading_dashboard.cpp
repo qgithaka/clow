@@ -10,6 +10,7 @@
 #include "../../src/risk/order_state_machine.h"
 #include "../../src/risk/kill_switch.h"
 #include "../../src/broker/mt5_bridge.h"
+#include "../../src/core/paper_simulation.h"
 
 void test_tactical_radar_telemetry() {
     using namespace clow::ui;
@@ -363,4 +364,28 @@ void test_execution_controller_lifecycle() {
     assert(kill_switch.is_active());
 
     std::cout << "[PASS] test_execution_controller_lifecycle" << std::endl;
+}
+
+void test_end_to_end_paper_simulation() {
+    using namespace clow::core;
+
+    MultiPairSimConfig config;
+    config.symbols = {"EURUSD", "GBPUSD", "USDJPY"};
+    config.ticks_per_pair = 200;
+    config.initial_balance = 25000.0;
+    config.min_conviction_threshold = 0.70;
+
+    PaperSimulationEngine engine(config);
+    auto report = engine.run_simulation();
+
+    assert(report.total_ticks_ingested == 600);
+    assert(report.inference_signals_evaluated == 12);
+    assert(report.orders_dispatched > 0);
+    assert(report.positions_filled == report.orders_dispatched);
+    assert(report.positions_closed == report.positions_filled);
+    assert(report.ending_equity >= report.starting_equity);
+    assert(report.zero_gate_breaches);
+    assert(report.summary_text.find("VERIFIED") != std::string::npos);
+
+    std::cout << "[PASS] test_end_to_end_paper_simulation" << std::endl;
 }
