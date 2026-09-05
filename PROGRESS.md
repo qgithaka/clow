@@ -39,7 +39,7 @@ Connects natively to MetaTrader 5 via local Windows IPC / DLL bindings without r
 
 - [x] Implement native Windows IPC broker connector to MT5 (account inspection, symbol catalogs, tick quotes)
 - [x] Build chunked historical time-window paginator to extract multi-year OHLCV data in slices
-- [ ] Implement boundary deduplication, chronological UTC sorting, and weekend market gap handling
+- [x] Implement boundary deduplication, chronological UTC sorting, and weekend market gap handling
 - [ ] Build strict data health validator (detects negative prices, bad spreads, missing intervals, disordered timestamps)
 - [ ] Implement immutable Parquet storage and DuckDB analytical query layer
 - [ ] Generate comprehensive data health reports for extracted datasets
